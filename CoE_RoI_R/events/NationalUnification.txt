@@ -966,7 +966,7 @@ country_event = {
 					any_core = {
 						NOT = { province_id = 370 }
 						NOT = { province_id = 371 }
-						relio = north_german
+						religion = north_german
 						owner = { NOT = { is_culture_group = germanic } }
 					}
 				}

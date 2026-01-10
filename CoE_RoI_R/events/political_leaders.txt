@@ -2147,7 +2147,7 @@ country_event = {
 	
 	mean_time_to_happen = {
 		months = 12
-		modifer = {
+		modifier = {
 			factor = 0.8
 			OR = {
 				nationalvalue = nv_independence

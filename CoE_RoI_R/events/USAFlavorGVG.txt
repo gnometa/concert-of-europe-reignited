@@ -23,7 +23,7 @@ country_event = {
 	option = {
 		name = "We must seek help from the USA"
 		set_country_flag = texas_asked_for_help
-		realtion = { who = USA value = 100 }
+		relation = { who = USA value = 100 }
 		USA = { country_event = 1000101 }
 		ai_chance = {
 			factor = 90

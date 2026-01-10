@@ -7,6 +7,6 @@ terrain = dry_forest
 1836.1.1 = {
 	owner = POR
 	controller = POR
-	remoe_core = GAZ
+	remove_core = GAZ
 	colonial = 1
 }
