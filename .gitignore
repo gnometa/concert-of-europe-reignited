@@ -3,5 +3,7 @@
 
 # Track only CoE_RoI_R mod
 !CoE_RoI_R/
+!CoE_RoI_R/**
 !CoE_RoI_R.mod
 !.gitignore
+!CLAUDE.md
