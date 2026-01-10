@@ -894,6 +894,51 @@ Uses province 2127-2128 as "ghost country" staging area.
 
 ---
 
+## Graphics and Asset Tools
+
+### ImageMagick - Image Conversion Tool
+
+ImageMagick is a powerful CLI tool for converting and manipulating graphics assets. It is essential for working with Victoria 2's graphics formats.
+
+**Installation:**
+```bash
+winget install --id ImageMagick.ImageMagick
+```
+
+**Common Conversions for Victoria 2:**
+
+```bash
+# PNG to TGA (flag format)
+magick input.png output.tga
+
+# PNG to DDS (texture format)
+magick input.png output.dds
+
+# Batch conversion (all PNG to TGA in directory)
+magick mogrify -format tga *.png
+
+# Resize flag to standard dimensions (32x22)
+magick input.png -resize 32x22! output.tga
+
+# Convert with specific compression
+magick input.png -define tga:compression=1 output.tga
+```
+
+**Flag Requirements:**
+- Standard flag dimensions: **32x22 pixels**
+- Format: TGA (Targa)
+- Required variants: `TAG.tga`, `TAG_communist.tga`, `TAG_fascist.tga`, `TAG_monarchy.tga`, `TAG_republic.tga`
+- Location: `gfx/flags/`
+
+**Installation Path (Windows):**
+```
+C:\Program Files\ImageMagick-7.1.2-Q16-HDRI\magick.exe
+```
+
+*Note: After installation, restart thy terminal to enable the `magick` command in PATH.*
+
+---
+
 ## Quick Reference
 
 | Setting | Value |
