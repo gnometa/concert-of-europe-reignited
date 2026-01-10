@@ -1,64 +1,149 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance when working with code in the **CoE_RoI_R** (Concert of Europe: Roar of Industry - Reignited) mod for Victoria 2.
 
 ## Project Overview
 
-**CoE_RoI_R** (Concert of Europe: Roar of Industry - Reignited) is a comprehensive total conversion mod for Victoria 2. Previously known as PDM_Concert, it extends the timeline from 1821-1946 and features 583 playable countries, an expanded map with 3,259 provinces, and extensive historical and alternate history content.
+CoE_RoI_R is a comprehensive total conversion mod for Victoria 2, previously known as PDM_Concert. Key features:
+- **Timeline**: 1821.9.1 to 1946.12.31 (defined in `common/defines.lua`)
+- **Countries**: 583 playable nations (522 with history files)
+- **Map**: 3,259 provinces across expanded world map
+- **Great Powers**: 8 nations | **Badboy Limit**: 50 | **Colonial Rank**: 16
 
 ## Directory Structure
 
 ```
 CoE_RoI_R/
-├── common/              # Core game mechanics and definitions
-│   ├── defines.lua      # Central configuration (timeline, great powers, mechanics)
-│   ├── buildings.txt    # Factory and building definitions
-│   ├── cultures.txt     # Culture groups and assimilation rules (3,189 lines)
-│   ├── goods.txt        # Trade goods and properties
-│   └── governments.txt  # Government types and mechanics
-├── events/              # 173 event files (historical, flavor, mechanics)
-├── decisions/           # 74 decision files (country-specific chains)
-├── history/             # Starting conditions for countries, provinces, pops
-│   └── countries/       # Country history files (TAG - Country Name.txt)
-├── localisation/        # CSV-based multi-language files
-├── technologies/        # Tech trees (army, commerce, culture, industry, navy)
-├── gfx/                 # Flags, unit sprites, interface graphics
-├── map/                 # Province definitions, terrain, adjacencies
-├── units/               # Military unit definitions
-├── poptypes/            # Population type definitions
-└── ValidatorSettings.txt # Validation configuration
+├── common/              # Core game mechanics (26 config files + 583 country defs)
+│   ├── countries/       # 583 country definition files (TAG.txt)
+│   ├── defines.lua      # Central config (751 lines, 7 sections)
+│   ├── cultures.txt     # Culture groups (138KB, extensive assimilation rules)
+│   ├── ideologies.txt   # 9 ideologies in 4 groups (1,186 lines)
+│   ├── governments.txt  # 33 government types with flag variants
+│   ├── cb_types.txt     # Casus belli definitions (196KB)
+│   ├── religion.txt     # Religion definitions (138KB)
+│   └── goods.txt        # 28 trade goods (4 categories)
+├── events/              # 170 event files including maintenance systems
+│   └── 00_CoE_RoI.txt   # Core maintenance events (ghost cleanup, migration)
+├── decisions/           # 74 decision files
+│   ├── NationalUnification.txt  # 1,449 lines of formation decisions
+│   └── gtfo.txt         # Largest decision file (108KB)
+├── history/             # Starting conditions
+│   ├── countries/       # 522 country history files
+│   ├── provinces/       # 2,830 province histories
+│   ├── pops/            # 62 population files
+│   ├── units/           # 437 starting military units
+│   ├── diplomacy/       # 8 diplomatic relationship files
+│   └── wars/            # 17 active war definitions
+├── localisation/        # 56 CSV localization files (~4MB total)
+│   ├── text.csv         # Primary text (3.7MB)
+│   └── 00_PDM_events.csv # Event localization (988KB)
+├── technologies/        # 5 tech tree files (~287KB total)
+├── inventions/          # 9 invention files (122KB other_inventions.txt)
+├── poptypes/            # 13 population types (custom: 00_urban_poor)
+├── units/               # 24 military unit definitions
+├── gfx/                 # 12,396 graphics files (flags, sprites, UI)
+├── map/                 # Province map data, terrain, adjacencies
+│   └── definition.csv   # Province definitions (89KB)
+├── interface/           # 19 interface definition files
+└── news/                # 9 newspaper event files
 ```
+
+## Key Configuration Sections (defines.lua)
+
+| Section | Purpose | Notable Settings |
+|---------|---------|------------------|
+| `country` | National mechanics | `GREAT_NATIONS_COUNT=8`, `BADBOY_LIMIT=50`, `COLONIAL_RANK=16` |
+| `economy` | Economic simulation | Factory behavior, trade caps, bankruptcy rules |
+| `military` | Combat mechanics | `BASE_COMBAT_WIDTH=30`, `POP_SIZE_PER_REGIMENT=5000` |
+| `diplomacy` | Diplomatic actions | Peace costs, infamy multipliers, alliance mechanics |
+| `pops` | Population dynamics | Assimilation, promotion, literacy, militancy |
+| `ai` | AI behavior tuning | Army composition, investment chance, peace logic |
+| `graphics` | Visual settings | City sprawl, mesh pools |
+
+## Political System
+
+### Ideologies (4 Groups, 9 Types)
+- **fascist_group**: `fascist`, `Executive` (custom)
+- **conservative_group**: `reactionary`, `pro_slavery` (custom), `conservative`
+- **socialist_group**: `socialist`, `communist`
+- **liberal_group**: `liberal`, `anarcho_liberal`
+
+### Government Types (33 with flag variants)
+Each type has up to 3 flag variants (e.g., `democracy`, `democracy2`, `democracy3`):
+- Democracies, HMS governments, Prussian constitutionalism
+- Absolute/Constitutional monarchies, Theocracies
+- Socialist/Proletarian dictatorships
+- Fascist/Presidential/Bourgeois dictatorships
+
+## Population Types (13)
+
+Standard: `aristocrats`, `artisans`, `bureaucrats`, `capitalists`, `clergymen`, `clerks`, `craftsmen`, `farmers`, `labourers`, `officers`, `slaves`, `soldiers`
+
+**Custom**: `00_urban_poor` (166KB definition - detailed urban poor mechanics)
+
+## Trade Goods Categories
+
+| Category | Goods |
+|----------|-------|
+| **military_goods** | military_industry |
+| **industrial_goods** | heavy_industry |
+| **consumer_goods** | food_industry, light_industry, luxury_industry |
+| **raw_material_goods** | cotton, dye, wool, silk, coal, sulphur, iron, timber, tropical_wood, rubber, oil, precious_metal, copper, lead, cattle, fish, fruit, grain, tobacco, tea, coffee, opium, sugar, spices, horses |
 
 ## Naming Conventions
 
 ### Event Files
-- `00_*` - Setup and initialization events
-- `0_*` - Major historical events
-- `1_`, `2_` etc. - Chronological progression
+- `00_*` - Core setup, maintenance events (e.g., `00_CoE_RoI.txt`)
+- `0_*` - System mechanics (demographics, colony types)
 - `+prefix_*` - Specific mechanics (e.g., `+education_RGO.txt`)
-- Thematic names: `ACW.txt` (American Civil War), `ARAFlavor.txt` (Arabia)
+- `*Flavor.txt` - Country-specific flavor events (e.g., `ENGFlavor.txt`)
+- Thematic names: `ACW.txt`, `GreatWar_Events.txt`, `Olympics.txt`
 
 ### Decision Files
-- `00_*`, `01_*` - Setup and flavor decisions
-- Geographic/cultural: `Balkans.txt`, `AUS.txt` (Australia)
-- Mechanic-specific: `Canals.txt`, `archaeology.txt`
+- `00_*`, `01_*` - Setup and system decisions
+- Country codes: `ENG.txt`, `RUS.txt`, `Germany.txt`
+- Geographic: `Balkans.txt`, `SouthAmerica.txt`
+- Mechanics: `NationalUnification.txt`, `Canals.txt`, `land_reform.txt`
 
-### Country Files
-- Format: `TAG - Country Name.txt` (e.g., `ENG - United Kingdom.txt`)
-- Uses Victoria 2 three-letter country tags
+### Country History Files
+- Format: `TAG - Country Name.txt`
+- Example: `ENG - United Kingdom.txt`, `PRU - Prussia.txt`
 - Located in `history/countries/`
 
-## File Organization Patterns
+## Architecture Patterns
 
-1. **Prefix-based ordering**: Numeric prefixes (`00_`, `0_`, `1_`) control load order
-2. **Geographic grouping**: Content organized by region (Arabia, Balkans, etc.)
-3. **Thematic separation**: Mechanics vs. historical events vs. flavor content
-4. **Comment-based organization**: Events use `#` comments for sections
+### Event Structure
+```
+country_event = {
+    id = [unique_number]
+    title = "[localization_key]"
+    desc = "[localization_key]"
+    
+    is_triggered_only = yes  # OR
+    trigger = { [conditions] }
+    mean_time_to_happen = { months = [value] }
+    
+    option = {
+        name = "[localization_key]"
+        [effects]
+    }
+}
+```
 
-## Scripting Patterns
+### Decision Structure
+```
+political_decisions = {
+    decision_name = {
+        potential = { [visibility conditions] }
+        allow = { [availability conditions] }
+        effect = { [outcomes] }
+        ai_will_do = { factor = [weight] }
+    }
+}
+```
 
-### Country History Files ([history/countries/](history/countries/))
-Structure for country initialization:
+### Country History Structure
 ```lua
 capital = [province_id]
 primary_culture = [culture]
@@ -72,7 +157,6 @@ prestige = [value]
 # Political reforms
 slavery = [level]
 upper_house_composition = [level]
-# ... more reforms
 
 # Technologies
 [tech_name] = 1
@@ -82,58 +166,76 @@ last_election = [YYYY.MM.DD]
 upper_house = { [ideology] = [amount] }
 ```
 
-### Events
-Standard Victoria 2 event structure:
-- Use `is_triggered_only = yes` for scripted events
-- Use `mean_time_to_happen` for random events
-- Limit clauses use `AND`/`OR` with `{ }` blocks
-- Comments with `#` for organization
+## Advanced Mod Mechanics
 
-### Decisions
-Structure in `political_decisions = { }` blocks:
-- `potential` - When decision appears
-- `allow` - When decision can be taken
-- `effect` - What happens
-- `ai_will_do` - AI weighting
+### Game Master System (BHU)
+Bhutan (`BHU`) is used as a "Game Master" country for background maintenance:
+- **Ghost Unit Cleanup**: Removes orphaned military units from non-existent countries
+- **State Population Display**: Updates province modifiers based on population tiers
+- **Random Migration**: Triggers population migration events
+- **Vassal Cleanup**: Handles orphaned vassal relationships
 
-## Validation
+### Maintenance Events (00_CoE_RoI.txt)
+- Event IDs 99991-99999: Core maintenance systems
+- Event IDs 6016818-6016821: Ghost unit cleanup chain
+- Uses province 2127-2128 as "ghost country" staging area
+- Runs via `is_triggered_only` or low MTTH triggers
 
-The mod uses [ValidatorSettings.txt](ValidatorSettings.txt) with:
-- `NoCheckKey` - Disables localization key checking (keys are used throughout)
-- Relaxed validation for development workflow
+### State Population Modifiers
+The mod tracks state population with province modifiers:
+- `s_pop_not_100k`, `s_pop_100k`, `s_pop_250k`
+- `s_pop_500k`, `s_pop_1000k`, `s_pop_2500k`
 
-When adding new events or decisions:
-- Ensure all localization keys are added to CSV files in [localisation/](localisation/)
-- Use the Victoria 2 validator tool to check for syntax errors
-- Comments are used extensively to disable content without deletion
+### Land Property Reform
+Event 99999: Automatic deregulation of land property when conditions met
 
-## Key Configuration
+## File Statistics
 
-- **Timeline**: 1821.9.1 to 1946.12.31 (defined in [common/defines.lua](common/defines.lua))
-- **Great Powers**: 8 nations
-- **Badboy Limit**: 50
-- **Colonial Rank**: 16 (minimum rank to colonize)
+| Category | Count | Notable Size |
+|----------|-------|--------------|
+| Events | 170 files | `political_leaders.txt` (261KB), `GreatWar_Events.txt` (190KB) |
+| Decisions | 74 files | `gtfo.txt` (108KB), `NationalUnification.txt` (26KB) |
+| Countries | 583 defs | History for 522 |
+| Provinces | 3,259 | Via `map/definition.csv` |
+| Localization | 56 CSVs | ~4MB total |
+| Graphics | 12,396 | Flags, units, UI |
 
-## Development Notes
+## Development Workflow
 
-- No build process: Victoria 2 loads mod files directly
-- Git version control with feature branch workflow
-- Localization uses CSV format for easy translation management
-- The mod contains significant commented-out content (marked with `#`) for debugging or alternate paths
-- Map modifications include backup files suggesting active development
+### Adding Content
 
-## Working with This Codebase
+1. **Events**: Add to appropriate file in `events/`, use unique ID range
+2. **Decisions**: Add to thematic file in `decisions/`
+3. **Countries**: Create `TAG - Name.txt` in `history/countries/`
+4. **Localization**: Add keys to CSVs in `localisation/`
+5. **Technologies**: Define in `technologies/` subdirectory
 
-When adding new content:
-1. **Events**: Place in appropriately named/prefixed file in [events/](events/)
-2. **Decisions**: Add to thematic file or create new one in [decisions/](decisions/)
-3. **Countries**: Create `TAG - Name.txt` in [history/countries/](history/countries/)
-4. **Localization**: Add keys to CSV files in [localisation/](localisation/)
-5. **Technologies**: Define in appropriate [technologies/](technologies/) subdirectory
-6. **Common definitions**: Add to relevant file in [common/](common/)
+### Common Patterns
 
-When modifying existing content:
-- Preserve comment structure and organization
-- Maintain prefix-based load ordering
-- Add localization for any new text keys
-- Test with Victoria 2 validator before committing
+- **Commented-out code**: Extensive use of `#` for disabled features/alternate paths
+- **Flag variants**: Government types use numbered variants (`democracy`, `democracy2`, `democracy3`)
+- **Maintenance events**: Use dedicated country (BHU) as trigger anchor
+- **Backup files**: Map files include backups (e.g., `provinces_backup.bmp`)
+
+### Validation
+- `ValidatorSettings.txt` with `NoCheckKey` for relaxed localization checking
+- Use Victoria 2 validator tool before committing
+- Test in-game for complex event chains
+
+## Event ID Ranges
+
+| Range | Usage |
+|-------|-------|
+| 99991-99999 | Core maintenance events |
+| 6016818-6016821 | Ghost unit cleanup |
+| Other ranges | Country/feature specific (see `EventIDs.txt`) |
+
+## Quick Reference
+
+- **Base Tax Efficiency**: 50%
+- **Pop Size Per Regiment**: 5,000
+- **Years of Nationalism**: 10
+- **Base Truce Duration**: 60 months
+- **Campaign Duration**: 6 months
+- **Tech Year Span**: 50 years
+- **Colonial Liferating**: 30
