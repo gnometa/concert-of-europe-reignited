@@ -1,5 +1,0 @@
-add_core = RUS
-add_core = YAK
-trade_goods = lead
-life_rating = 15
-terrain = tundra

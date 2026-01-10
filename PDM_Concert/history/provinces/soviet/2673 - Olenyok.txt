@@ -1,5 +1,0 @@
-add_core = BUK
-add_core = KHI
-trade_goods = grain
-life_rating = 5
-terrain = desert

@@ -1,8 +1,0 @@
-owner = HYD
-controller = HYD
-add_core = HYD
-add_core = NAG
-add_core = HND
-trade_goods = spices
-life_rating = 35
-terrain = dry_grassland

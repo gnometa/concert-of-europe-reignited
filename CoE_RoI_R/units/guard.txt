@@ -1,0 +1,48 @@
+guard = {
+	icon = 18
+	
+	type = land
+	sprite = Guard
+	active = no
+	unit_type = infantry
+	primary_culture = yes
+	floating_flag = no
+	#Core Abilities
+	priority = 24
+	max_strength = 3 #5
+	default_organisation = 10
+	maximum_speed = 4.00
+	weighted_value = 45.0
+
+	#Building Costs
+	build_time = 60
+	build_cost = {
+		military_industry = 40
+	}
+	
+	supply_consumption = 1
+	supply_cost = {
+		military_industry = 0.4
+		coal = 0.25
+		horses = 0.10
+		lead = 0.40
+		copper = 0.40
+		sulphur = 0.20
+		timber = 0.20
+		cattle = 0.05
+		cotton = 0.05
+		wool = 0.10	
+		iron = 0.10
+	}
+	
+
+	#Land Abilties
+	reconnaissance = 1
+	attack = 8
+	defence = 2
+	discipline = 1
+	support = 0.1
+	maneuver = 2
+	siege = 0.25
+
+}

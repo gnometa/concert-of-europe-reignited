@@ -1,6 +1,0 @@
-owner = SEG
-controller = SEG
-add_core = TRZ
-trade_goods = timber
-life_rating = 10
-terrain = semi_desert

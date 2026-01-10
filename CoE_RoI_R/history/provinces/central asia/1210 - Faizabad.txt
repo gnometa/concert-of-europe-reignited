@@ -1,0 +1,8 @@
+owner = AFG
+controller = AFG
+add_core = AFG
+add_core = TAJ
+add_core = KNZ
+trade_goods = wool
+life_rating = 30
+terrain = tundra_mountains

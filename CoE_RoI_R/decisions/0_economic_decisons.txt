@@ -1,0 +1,396 @@
+political_decisions = {
+	increase_state_investments = {
+		potential = {
+			ai = no
+		}
+		allow = {
+			OR = {
+				#economic_policy = interventionism
+				economic_policy = state_capitalism
+				economic_policy = planned_economy
+				economic_policy = anti_industrial
+			}
+			NOT = { has_country_modifier = state_investments }
+			NOT = { has_country_modifier = cooperation_with_rich }
+			NOT = { has_country_modifier = austerity_measures }
+		}
+		effect = {
+			add_tax_relative_income = -60
+			add_country_modifier = {
+				name = state_investments
+				duration = 3600
+			}
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	
+	cooperate_with_rich = {
+		potential = {	
+			ai = no
+		}
+		allow = {
+			OR = {
+				economic_policy = interventionism
+				economic_policy = state_capitalism
+				#economic_policy = planned_economy
+			}
+			NOT = { has_country_modifier = state_investments }
+			NOT = { has_country_modifier = cooperation_with_rich }
+			NOT = { has_country_modifier = austerity_measures }
+		}
+		effect = {
+			add_tax_relative_income = -40
+			any_owned = { limit = { has_pop_type = capitalists } owner = { money = 300 } }
+			any_pop = { limit = { type = capitalists } money = -250 }
+			
+			add_country_modifier = {
+				name = cooperation_with_rich
+				duration = 3600
+			}
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	ennact_economic_austerity = {
+		potential = {	
+			ai = no
+		}
+		allow = {
+			OR = {
+				economic_policy = laissez_faire
+				has_country_modifier = in_bankrupcy
+			}
+			NOT = { has_country_modifier = state_investments }
+			NOT = { has_country_modifier = cooperation_with_rich }
+			NOT = { has_country_modifier = austerity_measures }
+		}
+		effect = {
+			add_tax_relative_income = 50
+			any_pop = { limit = { type = capitalists } money = 500 }
+			
+			any_pop = {
+				limit = {
+					type = capitalists
+				}
+				money = 250
+			}
+			add_country_modifier = {
+				name = austerity_measures
+				duration = 3600
+			}
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+###AI
+	increase_state_investments_ai = {
+		potential = {
+			ai = yes
+			NOT = { has_country_modifier = ai_economic_flavour_cooldown }
+		}
+		allow = {
+			OR = {
+				#economic_policy = interventionism
+				economic_policy = state_capitalism
+				economic_policy = planned_economy
+			}
+			NOT = { has_country_modifier = state_investments }
+			NOT = { has_country_modifier = cooperation_with_rich }
+			NOT = { has_country_modifier = austerity_measures }
+		}
+		effect = {
+			#add_tax_relative_income = -6.0
+			add_country_modifier = {
+				name = state_investments
+				duration = 3600
+			}
+			add_country_modifier = {
+				name = ai_economic_flavour_cooldown
+				duration = 1095
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+	cooperate_with_rich_ai = {
+		potential = {	
+			ai = yes
+			NOT = { has_country_modifier = ai_economic_flavour_cooldown }
+		}
+		allow = {
+			OR = {
+				economic_policy = interventionism
+				#economic_policy = state_capitalism
+				#economic_policy = planned_economy
+			}
+			
+		}
+		effect = {
+			#add_tax_relative_income = -4.0
+			any_owned = { limit = { has_pop_type = capitalists } owner = { money = 150 } }
+			any_pop = { limit = { type = capitalists } money = -100 }
+			
+			add_country_modifier = {
+				name = cooperation_with_rich
+				duration = 3600
+			}
+			add_country_modifier = {
+				name = ai_economic_flavour_cooldown
+				duration = 1095
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	ennact_economic_austerity_ai = {
+		potential = {	
+			ai = yes
+			OR = {
+				NOT = { has_country_modifier = ai_economic_flavour_cooldown }
+				has_country_modifier = in_bankrupcy
+			}
+		}
+		allow = {
+			OR = {
+				economic_policy = laissez_faire
+				has_country_modifier = in_bankrupcy
+			}
+			NOT = { has_country_modifier = state_investments }
+			NOT = { has_country_modifier = cooperation_with_rich }
+			NOT = { has_country_modifier = austerity_measures }
+		}
+		effect = {
+			add_tax_relative_income = 100.0
+			any_pop = { limit = { type = capitalists } money = 500 }
+			
+			any_pop = {
+				limit = {
+					type = capitalists
+				}
+				money = 250
+			}
+			add_country_modifier = {
+				name = austerity_measures
+				duration = 3600
+			}
+			add_country_modifier = {
+				name = ai_economic_flavour_cooldown
+				duration = 1095
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	end_demographic_stagnation = {                     
+		potential = {	
+			has_country_modifier = demographic_collapse
+		}
+		allow = { 
+			OR = {
+				AND = {
+					OR = {
+						economic_policy = planned_economy
+						economic_policy = anti_industrial
+					}
+					literacy = 0.60
+				}
+				AND = {
+					health_care = acceptable_health_care
+					pensions = acceptable_pensions
+					education = public
+					literacy = 0.70
+				}
+				AND = {
+					economic_policy = laissez_faire
+					land_property = land_purchase
+					literacy = 0.80
+				}
+				literacy = 0.90
+			}
+		}        
+		effect = {
+			set_country_flag = end_of_stagnation_fra
+			add_country_modifier = {
+				name = catching_up_economically
+				duration = 7300
+			}
+			remove_country_modifier = demographic_collapse	
+			any_owned = {
+				limit = { is_core = FRA }
+				remove_province_modifier = demographic_collapse_prov
+			}
+			any_owned = {
+				limit = { is_core = FRA }
+				add_province_modifier = {				
+					name = catching_up_economically_prov
+					duration = 3650
+				}
+			}				
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	reinstitute_slavery = { 
+		picture = slave_trade
+		potential = {	
+			slavery = yes_slavery
+			NOT = { is_culture_group = african_diaspora_cultures }
+			NOT = { is_culture_group = west_african }
+			NOT = { is_culture_group = central_african }
+			NOT = { is_culture_group = east_african }
+			NOT = { is_culture_group = southern_african }	
+			#any_owned_province = {
+				#any_pop = { 
+				#	OR = {
+				#		is_culture_group = african_diaspora_cultures
+				#		is_culture_group = west_african
+				#		is_culture_group = central_african
+				#		is_culture_group = east_african
+				#		is_culture_group = southern_african
+				#	}
+				#}
+			#}	
+		}
+		allow = { 
+			slavery = yes_slavery
+			NOT = { has_country_modifier = slavery_reinstituted }
+			any_owned_province = {
+				any_pop = { 
+					OR = {
+						is_culture_group = african_diaspora_cultures
+						is_culture_group = west_african
+						is_culture_group = central_african
+						is_culture_group = east_african
+						is_culture_group = southern_african
+					}
+				}
+			}
+		}        
+		effect = {
+			add_tax_relative_income = 25.0
+			prestige = -5
+			prestige_factor = -0.01
+			badboy = 5
+			add_country_modifier = {
+				name = slavery_reinstituted
+				duration = 1825
+			}
+			any_country = { limit = { slavery = no_slavery } relation = { who = THIS value = -10 } }
+			any_owned = {
+				any_pop = {
+					limit = {  
+						OR = {
+							is_culture_group = african_diaspora_cultures
+							is_culture_group = west_african
+							is_culture_group = central_african
+							is_culture_group = east_african
+							is_culture_group = southern_african
+						}
+					}
+					pop_type = slaves
+					militancy = 10
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	choose_econ_poli_NEP = {
+		picture = econ_nep_pic
+		potential = {
+			NOT = { has_country_modifier = nep_econ }
+			NOT = { has_country_modifier = road_to_communism_paved }
+			OR = { government = proletarian_dictatorship government = proletarian_dictatorship2 government = proletarian_dictatorship3 government = socialist_democracy government = socialist_democracy2 government = socialist_democracy3 }
+		}
+		allow = {
+			OR = {
+				#economic_policy = interventionism
+				economic_policy = planned_economy
+				economic_policy = anti_industrial
+			}
+			#NOT = { has_country_modifier = state_investments }
+			#NOT = { has_country_modifier = cooperation_with_rich }
+			#NOT = { has_country_modifier = austerity_measures }
+		}
+		effect = {
+			remove_country_modifier = 5y_econ
+			remove_country_modifier = nep_econ
+			add_country_modifier = {
+				name = nep_econ
+				duration = -1
+			}			
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				NOT = { ruling_party_ideology = socialist }
+			}
+		}
+	}	
+	choose_econ_poli_5y = {
+		picture = econ_5y_pic
+		potential = {
+			NOT = { has_country_modifier = 5y_econ }
+			NOT = { has_country_modifier = road_to_communism_paved }			
+			OR = { government = proletarian_dictatorship government = proletarian_dictatorship2 government = proletarian_dictatorship3 government = socialist_democracy government = socialist_democracy2 government = socialist_democracy3 }
+		}
+		allow = {
+			OR = {
+				economic_policy = planned_economy
+				economic_policy = anti_industrial
+			}
+		}
+		effect = {
+			remove_country_modifier = 5y_econ
+			remove_country_modifier = nep_econ			
+			add_country_modifier = {
+				name = 5y_econ
+				duration = -1
+			}			
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				NOT = { ruling_party_ideology = communist }
+			}			
+		}
+	}	
+	reset_colony_types = {
+		#picture = econ_5y_pic
+		potential = {
+			exists = yes
+			ai = no
+			any_owned_province = {
+				is_colonial = yes
+			}
+			year = 1822
+		}
+		allow = {
+			money = 20000
+		}
+		effect = {
+			treasury = -10000
+			any_owned = {
+				limit = { is_colonial = yes }
+				remove_province_modifier = settlement_colony
+				remove_province_modifier = exploitation_colony
+			}			
+		}
+		ai_will_do = {
+			factor = 0			
+		}
+	}	
+}

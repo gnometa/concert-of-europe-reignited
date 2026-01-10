@@ -1,0 +1,12 @@
+owner = TUR
+controller = GRE
+add_core = TUR
+add_core = GRE
+add_core = EPI
+trade_goods = sulphur
+life_rating = 30
+terrain = hilly_grassland
+1836.1.1 = {
+	owner = GRE
+	remove_core = TUR
+}

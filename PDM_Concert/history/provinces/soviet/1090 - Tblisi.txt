@@ -1,7 +1,0 @@
-owner = RUS
-controller = RUS
-add_core = GEO
-add_core = RUS
-trade_goods = lead
-life_rating = 35
-terrain = hills

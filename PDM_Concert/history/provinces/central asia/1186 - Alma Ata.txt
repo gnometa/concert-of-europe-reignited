@@ -1,6 +1,0 @@
-controller = KAZ
-owner = KAZ
-add_core = KAZ
-trade_goods = grain
-life_rating = 35
-terrain = mountain_grassland

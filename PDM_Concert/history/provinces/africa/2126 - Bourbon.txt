@@ -1,7 +1,0 @@
-owner = FRA
-controller = FRA
-trade_goods = fish
-life_rating = 35
-terrain = insular
-colonial = 1
-naval_base = 1

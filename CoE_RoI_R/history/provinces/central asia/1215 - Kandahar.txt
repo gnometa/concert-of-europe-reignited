@@ -1,0 +1,8 @@
+owner = AFG
+controller = AFG
+add_core = KDH
+add_core = AFG
+add_core = KHR
+trade_goods = wool
+life_rating = 30
+terrain = desert

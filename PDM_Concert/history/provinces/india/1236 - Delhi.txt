@@ -1,8 +1,0 @@
-owner = ENG
-controller = ENG
-add_core = MUG
-add_core = HND
-trade_goods = sugar
-life_rating = 35
-terrain = rich_farmland
-colonial = 1

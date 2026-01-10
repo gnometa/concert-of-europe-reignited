@@ -1,8 +1,0 @@
-owner = AUS
-controller = AUS
-add_core = SYL
-add_core = HUN
-add_core = ROM
-trade_goods = wool
-life_rating = 32
-terrain = hilly_farmland

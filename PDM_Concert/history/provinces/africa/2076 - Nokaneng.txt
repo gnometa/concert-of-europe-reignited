@@ -1,4 +1,0 @@
-add_core = TSW
-trade_goods = lead
-life_rating = 15
-terrain = marsh

@@ -1,0 +1,41 @@
+rebels_casualties = {
+	limit = {
+		revolution_n_counterrevolution = 1
+	}
+	news = no
+	chance = {
+		base = 0
+		modifier = {
+			factor = -50
+			NOT = { tag = REB }
+		}
+	}
+	effect = {
+		soldier_to_pop_loss = 10.0
+		artillery = {
+			max_strength = 3
+		}	
+		dragoon = {
+			max_strength = 6
+		}	
+		guard = {
+			max_strength = 6
+		}	
+		hussar = {
+			max_strength = 3
+		}			
+		regular = {
+			max_strength = 3
+		}	
+		cavalry = {
+			max_strength = -2
+		}			
+		horse_artillery = {
+			max_strength = -2
+		}		
+		infantry = {
+			max_strength = -2
+		}				
+	}
+		
+}

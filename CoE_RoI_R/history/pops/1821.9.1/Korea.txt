@@ -1,0 +1,742 @@
+
+1619 = {
+
+	capitalists = {
+
+		size = 21176
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	artisans = {
+
+		size = 17728
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	bureaucrats = {
+
+		size = 558
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	clergymen = {
+
+		size = 3590
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	labourers = {
+
+		size = 321148
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	officers = {
+
+		size = 1114
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	slaves = {
+
+		size = 18656
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	soldiers = {
+
+		size = 11940
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+
+}
+1620 = {
+
+	artisans = {
+
+		size = 16792
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	clergymen = {
+
+		size = 3404
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	labourers = {
+
+		size = 305288
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	slaves = {
+
+		size = 18656
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+
+}
+1621 = {
+
+	artisans = {
+
+		size = 6530
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	bureaucrats = {
+
+		size = 278
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	clergymen = {
+
+		size = 1398
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	labourers = {
+
+		size = 118104
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	slaves = {
+
+		size = 9328
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+
+}
+1622 = {
+
+	artisans = {
+
+		size = 7462
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	clergymen = {
+
+		size = 1492
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	labourers = {
+
+		size = 135454
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	slaves = {
+
+		size = 18656
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+
+}
+1623 = {
+
+	artisans = {
+
+		size = 5596
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	clergymen = {
+
+		size = 1166
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	labourers = {
+
+		size = 101918
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	slaves = {
+
+		size = 9328
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+
+}
+1624 = {
+
+	capitalists = {
+
+		size = 24114
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	artisans = {
+
+		size = 18656
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	artisans = {
+
+		size = 6996
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	bureaucrats = {
+
+		size = 1258
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	clergymen = {
+
+		size = 5224
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	labourers = {
+
+		size = 464066
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	officers = {
+
+		size = 1166
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	slaves = {
+
+		size = 37314
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	soldiers = {
+
+		size = 15392
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+
+}
+1625 = {
+
+	artisans = {
+
+		size = 6062
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	clergymen = {
+
+		size = 1258
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	labourers = {
+
+		size = 110360
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	slaves = {
+
+		size = 9328
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+
+}
+1626 = {
+
+	artisans = {
+
+		size = 5596
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	clergymen = {
+
+		size = 1166
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	labourers = {
+
+		size = 101918
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	slaves = {
+
+		size = 9328
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+
+}
+1627 = {
+
+	capitalists = {
+
+		size = 10540
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	artisans = {
+
+		size = 7462
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	clergymen = {
+
+		size = 1538
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	labourers = {
+
+		size = 135502
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	officers = {
+
+		size = 418
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	slaves = {
+
+		size = 9328
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	soldiers = {
+
+		size = 6436
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+
+}
+1628 = {
+
+	artisans = {
+
+		size = 12126
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	clergymen = {
+
+		size = 2472
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	labourers = {
+
+		size = 219462
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	slaves = {
+
+		size = 18656
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+
+}
+1629 = {
+
+	artisans = {
+
+		size = 7928
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	bureaucrats = {
+
+		size = 326
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	clergymen = {
+
+		size = 1584
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	labourers = {
+
+		size = 143292
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	slaves = {
+
+		size = 18656
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+
+}
+1630 = {
+
+	artisans = {
+
+		size = 5596
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	clergymen = {
+
+		size = 1166
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	labourers = {
+
+		size = 101918
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	slaves = {
+
+		size = 9328
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+
+}
+1631 = {
+
+	artisans = {
+
+		size = 6062
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	clergymen = {
+
+		size = 1258
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	labourers = {
+
+		size = 110406
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	slaves = {
+
+		size = 9328
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+
+}
+1632 = {
+
+	artisans = {
+
+		size = 16324
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	bureaucrats = {
+
+		size = 698
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	clergymen = {
+
+		size = 3358
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	labourers = {
+
+		size = 295072
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	slaves = {
+
+		size = 18656
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+
+}
+1633 = {
+
+	artisans = {
+
+		size = 9328
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	clergymen = {
+
+		size = 1958
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	labourers = {
+
+		size = 169878
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	slaves = {
+
+		size = 9328
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+
+}
+1634 = {
+
+	artisans = {
+
+		size = 13992
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	clergymen = {
+
+		size = 2890
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	labourers = {
+
+		size = 253838
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	slaves = {
+
+		size = 18656
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+
+}
+1635 = {
+
+	capitalists = {
+
+		size = 23414
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	artisans = {
+
+		size = 14086
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	bureaucrats = {
+
+		size = 558
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	clergymen = {
+
+		size = 2798
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	labourers = {
+
+		size = 254306
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	officers = {
+
+		size = 1444
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	slaves = {
+
+		size = 18656
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	soldiers = {
+
+		size = 14552
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+
+}
+1636 = {
+
+	artisans = {
+
+		size = 12126
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	clergymen = {
+
+		size = 2472
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	labourers = {
+
+		size = 219462
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	slaves = {
+
+		size = 18656
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+
+}
+1637 = {
+
+	artisans = {
+
+		size = 6530
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	clergymen = {
+
+		size = 1352
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	labourers = {
+
+		size = 118896
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+	slaves = {
+
+		size = 9328
+		culture = korean
+		religion = korean #religion = mahayana
+
+	}
+
+}

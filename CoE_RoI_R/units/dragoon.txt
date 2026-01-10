@@ -1,0 +1,53 @@
+dragoon = {
+	icon = 14
+	
+	type = land
+	sprite = Cavalry
+	active = no
+	unit_type = cavalry
+	primary_culture = yes
+	
+	#Avatar
+	sprite_override = Cavalry
+	sprite_mount = GenericMount
+	sprite_mount_attach_node = Saddle_Node
+	floating_flag = yes
+	
+	#Core Abilities
+	priority = 15
+	max_strength = 3 #5
+	default_organisation = 10
+	maximum_speed = 5
+	weighted_value = 6.0
+
+	#Building Costs
+	build_time = 50
+	build_cost = {
+		military_industry = 30.0
+	}
+	
+	supply_consumption = 1
+	supply_cost = {
+		military_industry = 0.30
+		coal = 0.25
+		horses = 0.10
+		lead = 0.40
+		copper = 0.40
+		sulphur = 0.20
+		timber = 0.20
+		cattle = 0.05
+		cotton = 0.05
+		wool = 0.10	
+		iron = 0.10
+	}
+	
+
+	#Land Abilties
+	reconnaissance = 1
+	attack = 4
+	defence = 3
+	discipline = 1.0
+	support = 0.2
+	maneuver = 3
+	
+}

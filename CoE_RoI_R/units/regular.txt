@@ -1,0 +1,47 @@
+regular = {
+	icon = 1
+	
+	type = land
+	sprite = Infantry
+	active = no
+	unit_type = infantry
+	primary_culture = yes
+	floating_flag = no	
+	#Core Abilities
+	priority = 10
+	max_strength = 3 #5
+	default_organisation = 10
+	maximum_speed = 4.00
+	weighted_value = 10.0
+
+	#Building Costs
+	build_time = 30
+	build_cost = {
+		military_industry = 20
+	}
+	
+	supply_consumption = 1
+	supply_cost = {
+		military_industry = 0.2
+		coal = 0.25
+		horses = 0.10
+		lead = 0.40
+		copper = 0.40
+		sulphur = 0.20
+		timber = 0.20
+		cattle = 0.05
+		cotton = 0.05
+		wool = 0.10	
+		iron = 0.10
+	}
+	
+
+	#Land Abilties
+	reconnaissance = 0.15
+	attack = 4
+	defence = 4
+	discipline = 1
+	support = 0.1
+	maneuver = 1
+	siege = 0
+}

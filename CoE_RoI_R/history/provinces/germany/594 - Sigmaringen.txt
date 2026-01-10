@@ -1,0 +1,8 @@
+owner = PRU
+controller = PRU
+add_core = PRU
+add_core = SGF
+add_core = GER
+trade_goods = grain
+life_rating = 30
+terrain = deciduous_forest_hills

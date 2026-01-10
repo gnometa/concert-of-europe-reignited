@@ -1,0 +1,10 @@
+owner = TUR
+controller = TUR
+add_core = TUR
+add_core = BOS
+add_core = CRO
+add_core = SER
+add_core = EPI
+trade_goods = grain
+life_rating = 30
+terrain = deciduous_forest_mountains
