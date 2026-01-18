@@ -1,10 +1,10 @@
 #Goldsmith Arbitration
 country_event = {
-	id = 300999
+	id = 300991
 	is_triggered_only = yes
 
-	title = "the_goldsmith_arbitration"
-	desc = "EVTDESC300998"
+	title = "EVTNAME300991"
+	desc = "EVTDESC300991"
 	picture = "persia_throne"
 
 	option = {
