@@ -894,6 +894,57 @@ Uses province 2127-2128 as "ghost country" staging area.
 
 ---
 
+## Development Tools
+
+### Localization Checker (`check_missing_localizations.py`)
+
+A comprehensive Python script to detect missing localizations for event modifiers, triggered modifiers, events, and decisions.
+
+**Location:** `D:\Steam\steamapps\common\Victoria 2\mod\check_missing_localizations.py`
+
+**Usage:**
+```bash
+# Full scan of all localizations
+python check_missing_localizations.py
+
+# Verbose output with detailed listings
+python check_missing_localizations.py --verbose
+
+# Scan for specific modifier pattern
+python check_missing_localizations.py --scan-money-hoarder
+
+# Generate fix file with proposed entries
+python check_missing_localizations.py --fix --output proposed_fixes.csv
+```
+
+**Features:**
+- Scans `event_modifiers.txt` and `triggered_modifiers.txt` for modifier definitions
+- Parses event files (`events/*.txt`) for event IDs and option names
+- Parses decision files (`decisions/*.txt`) for decision names
+- Cross-references with all CSV files in `localisation/`
+- Categorizes missing localizations by type (modifiers, events, decisions)
+- Generates CSV-formatted fix files for easy integration
+
+**Output Categories:**
+- `modifiers` - Missing modifier base keys
+- `modifier_descriptions` - Missing `desc_MODIFIER` keys
+- `events_name` - Missing `EVTIDNAME` keys
+- `events_desc` - Missing `EVTIDDESC` keys
+- `events_opt*` - Missing `EVTIDOPT*` keys
+- `decisions` - Missing decision title keys
+- `decision_descriptions` - Missing `decision_desc` keys
+
+**Best Practices:**
+1. Run after adding new modifiers, events, or decisions
+2. Review generated fix file manually - do not auto-apply without inspection
+3. Add new localizations to appropriate existing CSV files:
+   - Event modifiers → `localisation/00_PDM_events.csv`
+   - Economic/triggered modifiers → `localisation/0000_economic_rework.csv`
+   - Country-specific → `localisation/[TAG]_events.csv`
+4. Always maintain Windows-1252 (ANSI) encoding when editing CSVs
+
+---
+
 ## Graphics and Asset Tools
 
 ### ImageMagick - Image Conversion Tool
