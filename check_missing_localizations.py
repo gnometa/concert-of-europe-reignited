@@ -20,7 +20,34 @@ Usage:
     python check_missing_localizations.py [--verbose] [--fix] [--output report.txt]
 
 Author: Claude Code for CoE_RoI_R mod
-Version: 2.0
+Version: 2.1
+
+Recent Improvements (v2.1):
+---------------------------
+1. Enhanced Encoding Detection:
+   - Priority-based encoding detection (UTF-8 -> Windows-1252 -> UTF-16 -> auto-detect)
+   - Proper handling of BOM markers
+   - Better fallback for corrupted or mixed-encoding files
+   - Confidence-based chardet integration
+
+2. Cross-Platform Console Output:
+   - safe_console_string() function for Windows console compatibility
+   - Automatic encoding fallback to prevent console crashes
+   - Preserves Unicode where possible, falls back gracefully
+
+3. False Positive Reduction:
+   - is_likely_localisation_key() function to filter actual descriptions
+   - Heuristics to distinguish between keys and inline text
+   - Reduces false reports for events with inline descriptions
+
+4. Robust File Handling:
+   - FileNotFoundError handling for missing optional files
+   - Graceful degradation when files can't be read
+   - Better error messages for debugging
+
+Version History:
+    v2.1 (2026): Improved encoding handling and false positive reduction
+    v2.0 (2026): Initial comprehensive localisation checker
 """
 
 import os
@@ -67,29 +94,58 @@ def read_file_with_encoding(file_path: Path) -> Optional[str]:
     """
     Read a file with automatic encoding detection.
     Tries UTF-8 first, then detects encoding if that fails.
+
+    Priority order for encoding detection:
+    1. UTF-8 (with BOM handling)
+    2. Windows-1252 (Victoria 2 standard)
+    3. UTF-16 (common on Windows)
+    4. Auto-detection via chardet (if available)
+    5. Latin-1 as fallback (never fails)
     """
+    # Check if file exists first
+    if not file_path.exists():
+        return None
+
+    # Try UTF-8 first (with BOM handling)
     try:
-        return file_path.read_text(encoding="utf-8")
-    except UnicodeDecodeError:
-        # Detect encoding if chardet is available
-        if HAVE_CHARDET:
+        return file_path.read_text(encoding="utf-8-sig")
+    except (UnicodeDecodeError, FileNotFoundError):
+        pass
+
+    # Try Windows-1252 (Victoria 2 standard encoding)
+    try:
+        return file_path.read_text(encoding="windows-1252")
+    except (UnicodeDecodeError, FileNotFoundError):
+        pass
+
+    # Try UTF-16 LE/BE (common on Windows)
+    for encoding in ["utf-16-le", "utf-16-be", "utf-16"]:
+        try:
+            return file_path.read_text(encoding=encoding)
+        except (UnicodeDecodeError, FileNotFoundError):
+            continue
+
+    # Auto-detect encoding if chardet is available
+    if HAVE_CHARDET:
+        try:
             with open(file_path, 'rb') as f:
                 raw = f.read()
                 result = chardet.detect(raw)
                 detected_encoding = result.get('encoding', 'latin-1')
-            try:
-                return file_path.read_text(encoding=detected_encoding)
-            except:
-                pass  # Fall through to latin-1
+                confidence = result.get('confidence', 0)
+                # Only use detected encoding if confidence is reasonable
+                if confidence > 0.6:
+                    try:
+                        return raw.decode(detected_encoding, errors='replace')
+                    except:
+                        pass
+        except Exception:
+            pass
 
-        # Last resort - try common encodings
-        for enc in ["latin-1", "cp1252", "iso-8859-1"]:
-            try:
-                return file_path.read_text(encoding=enc, errors="ignore")
-            except:
-                continue
-        return None
-    except Exception as e:
+    # Last resort - latin-1 never fails
+    try:
+        return file_path.read_text(encoding="latin-1", errors="replace")
+    except Exception:
         return None
 
 
@@ -148,6 +204,45 @@ def parse_goods_file(file_path: Path) -> Set[str]:
     return goods
 
 
+def is_likely_localisation_key(text: str) -> bool:
+    """
+    Determine if a text string is likely a localisation key or actual description text.
+
+    Returns True if the text appears to be a localisation key (EVT..., option_..., etc.)
+    Returns False if the text appears to be actual descriptive text.
+
+    This helps reduce false positives where event descriptions are written directly
+    in the event file rather than using localisation keys.
+    """
+    # Explicit localisation keys
+    if text.startswith("EVT"):
+        return True
+
+    # Option keys follow specific patterns
+    if re.match(r'^[a-z_][a-z0-9_]*$', text):
+        return True
+
+    # Text with spaces, sentences, or special characters is likely actual description text
+    # These don't need localisation keys as they're already localized
+    if len(text) > 50:  # Long text is almost certainly description, not a key
+        return False
+
+    # Contains sentence structure indicators
+    if any(marker in text.lower() for marker in [
+        'the ', 'our ', 'we have', 'has been', 'shall ',
+        'with the ', 'from the ', 'and the '
+    ]):
+        return False
+
+    # Contains multiple words (likely a description)
+    words = text.split()
+    if len(words) > 6:  # More than 6 words is likely a description
+        return False
+
+    # Default to treating as localisation key for safety
+    return True
+
+
 def parse_event_file(file_path: Path) -> Dict[str, Set[str]]:
     """
     Parse event file and extract all localization keys needed.
@@ -174,13 +269,17 @@ def parse_event_file(file_path: Path) -> Dict[str, Set[str]]:
     title_pattern = re.compile(r'\btitle\s*=\s*"([^"]+)"', re.MULTILINE)
     for title in title_pattern.findall(content):
         if not title.startswith("EVT"):  # EVT... keys are auto-generated
-            result['titles'].add(title)
+            # Filter out text that appears to be actual descriptions
+            if is_likely_localisation_key(title):
+                result['titles'].add(title)
 
     # desc = "KEY" pattern
     desc_pattern = re.compile(r'\bdesc\s*=\s*"([^"]+)"', re.MULTILINE)
     for desc in desc_pattern.findall(content):
         if not desc.startswith("EVT"):
-            result['descs'].add(desc)
+            # Filter out text that appears to be actual descriptions
+            if is_likely_localisation_key(desc):
+                result['descs'].add(desc)
 
     # option { name = "KEY" } pattern
     opt_name_pattern = re.compile(r'\bname\s*=\s*"([^"]+)"', re.MULTILINE)
@@ -442,6 +541,39 @@ def find_missing_localizations(
     return missing
 
 
+def safe_console_string(text: str) -> str:
+    """
+    Convert a string to a safe format for console output.
+    Preserves Unicode characters on supported terminals, falls back gracefully.
+
+    On Windows with limited Unicode support, this prevents encoding errors.
+    """
+    try:
+        # Try to encode with the console's encoding
+        import sys
+        console_encoding = sys.stdout.encoding or 'utf-8'
+        text.encode(console_encoding)
+        return text
+    except (UnicodeEncodeError, AttributeError):
+        # Fall back to ASCII-safe representation
+        return text.encode('ascii', errors='replace').decode('ascii')
+
+
+def normalize_for_comparison(text: str) -> str:
+    """
+    Normalize text for comparison when checking if localizations exist.
+    Removes diacritics and normalizes whitespace for fuzzy matching.
+    """
+    import unicodedata
+    # Normalize to NFD (decomposed form)
+    normalized = unicodedata.normalize('NFD', text)
+    # Remove combining characters (diacritics)
+    return ''.join(
+        c for c in normalized
+        if not unicodedata.combining(c)
+    ).strip()
+
+
 def print_report(missing: Dict[str, List[Tuple[str, str]]], verbose: bool = False):
     """Print a formatted report of missing localizations."""
     total_missing = sum(len(v) for v in missing.values())
@@ -467,8 +599,8 @@ def print_report(missing: Dict[str, List[Tuple[str, str]]], verbose: bool = Fals
             if items:
                 print(f"\n{Colors.HEADER}=== {category.upper().replace('_', ' ')} ==={Colors.ENDC}")
                 for key, location in items[:50]:
-                    safe_key = key.encode('ascii', errors='replace').decode('ascii')
-                    print(f"  - {safe_key} ({location})")
+                    safe_key = safe_console_string(key)
+                    print(f"  - {safe_key} ({safe_console_string(location)})")
                 if len(items) > 50:
                     print(f"  ... and {len(items) - 50} more")
     else:
@@ -480,8 +612,8 @@ def print_report(missing: Dict[str, List[Tuple[str, str]]], verbose: bool = Fals
             if category in missing and missing[category]:
                 print(f"\n{Colors.WARNING}=== {category.upper().replace('_', ' ')} ==={Colors.ENDC}")
                 for key, location in missing[category][:20]:
-                    safe_key = key.encode('ascii', errors='replace').decode('ascii')
-                    print(f"  - {safe_key} ({location})")
+                    safe_key = safe_console_string(key)
+                    print(f"  - {safe_key} ({safe_console_string(location)})")
                 if len(missing[category]) > 20:
                     print(f"  ... and {len(missing[category]) - 20} more")
 
