@@ -467,7 +467,8 @@ def print_report(missing: Dict[str, List[Tuple[str, str]]], verbose: bool = Fals
             if items:
                 print(f"\n{Colors.HEADER}=== {category.upper().replace('_', ' ')} ==={Colors.ENDC}")
                 for key, location in items[:50]:
-                    print(f"  • {key} ({location})")
+                    safe_key = key.encode('ascii', errors='replace').decode('ascii')
+                    print(f"  - {safe_key} ({location})")
                 if len(items) > 50:
                     print(f"  ... and {len(items) - 50} more")
     else:
@@ -479,7 +480,8 @@ def print_report(missing: Dict[str, List[Tuple[str, str]]], verbose: bool = Fals
             if category in missing and missing[category]:
                 print(f"\n{Colors.WARNING}=== {category.upper().replace('_', ' ')} ==={Colors.ENDC}")
                 for key, location in missing[category][:20]:
-                    print(f"  • {key} ({location})")
+                    safe_key = key.encode('ascii', errors='replace').decode('ascii')
+                    print(f"  - {safe_key} ({location})")
                 if len(missing[category]) > 20:
                     print(f"  ... and {len(missing[category]) - 20} more")
 
