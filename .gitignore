@@ -1,9 +1,12 @@
 # Ignore everything by default
 *
 
-# Track only CoE_RoI_R mod
+# Track only CoE_RoI_R mod and essential files
 !CoE_RoI_R/
 !CoE_RoI_R/**
 !CoE_RoI_R.mod
+!app/
+!app/**
 !.gitignore
 !CLAUDE.md
+!README.md
