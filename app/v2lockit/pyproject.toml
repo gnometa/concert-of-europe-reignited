@@ -1,0 +1,35 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "v2lockit"
+version = "0.1.0"
+description = "Victoria 2 Localisation Toolkit - GUI application for managing mod localisations"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [
+    { name = "CoE:RoI-R Team" }
+]
+keywords = ["victoria2", "paradox", "modding", "localisation", "gui"]
+
+dependencies = [
+    "PySide6>=6.6.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pyinstaller>=6.0.0",
+]
+
+[project.scripts]
+v2lockit = "v2lockit.main:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/v2lockit"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
