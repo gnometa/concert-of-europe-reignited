@@ -5,38 +5,27 @@ Victoria 2 Localisation Line Ending Fixer
 
 Fixes CSV files to use Victoria 2's required double carriage return line endings (\r\r\n).
 
-Victoria 2 base game uses \r\r\n (CR+CR+LF) as line endings, not standard \r\n (CRLF).
-Without the double carriage return, the CSV parser misaligns columns, causing:
-- Country name shifting
-- Buttons showing raw keys instead of translations
-- General localisation failures
-
 Usage:
-    python fix-line-endings.py [path]
-
-Arguments:
-    path    Path to localisation folder or specific file
-            (default: CoE_RoI_R/localisation/)
+    python fix-line-endings.py [path] [--dry-run] [--no-backup]
 """
 
 import os
 import sys
+import shutil
+import argparse
 from pathlib import Path
 from datetime import datetime
 from typing import Tuple, List
 
-
-def fix_file_line_endings(file_path: Path) -> Tuple[bool, str]:
+def fix_file_line_endings(file_path: Path, dry_run=False, no_backup=False) -> Tuple[bool, str]:
     """
     Fix line endings in a single CSV file.
-
-    Converts:
-    - \n (LF) → \r\r\n
-    - \r\n (CRLF) → \r\r\n
-
+    
     Args:
         file_path: Path to the CSV file
-
+        dry_run: Simulate only
+        no_backup: specific flag to skip backup
+        
     Returns:
         Tuple of (success, message)
     """
@@ -48,7 +37,6 @@ def fix_file_line_endings(file_path: Path) -> Tuple[bool, str]:
         original_size = len(content)
 
         # First, normalize any existing \r\n to single \n for consistent processing
-        # This handles files that might have mixed line endings
         normalized = content.replace(b'\r\n', b'\n')
 
         # Now convert all \n to \r\r\n (double carriage return + line feed)
@@ -63,11 +51,25 @@ def fix_file_line_endings(file_path: Path) -> Tuple[bool, str]:
         if fixed == content:
             return True, f"Already correct ({original_size} bytes)"
 
-        # Write fixed content directly (no backup)
+        if dry_run:
+            return True, f"[DRY RUN] Would fix: {original_size} -> {new_size} bytes"
+
+        # Create backup
+        if not no_backup:
+            backup_path = file_path.with_suffix(file_path.suffix + '.bak_' + datetime.now().strftime('%Y%m%d_%H%M%S'))
+            try:
+                shutil.copy2(file_path, backup_path)
+            except Exception as e:
+                return False, f"Backup failed: {e}"
+
+        # Write fixed content
         with open(file_path, 'wb') as f:
             f.write(fixed)
 
-        return True, f"Fixed: {original_size} -> {new_size} bytes"
+        msg = f"Fixed: {original_size} -> {new_size} bytes"
+        if not no_backup:
+            msg += " (Backup created)"
+        return True, msg
 
     except Exception as e:
         return False, f"Error: {e}"
@@ -76,44 +78,39 @@ def fix_file_line_endings(file_path: Path) -> Tuple[bool, str]:
 def verify_file(file_path: Path) -> bool:
     """
     Verify that a file has correct \r\r\n line endings.
-
-    Args:
-        file_path: Path to the CSV file
-
-    Returns:
-        True if line endings are correct
     """
     try:
         with open(file_path, 'rb') as f:
-            # Read first 10KB to check line endings
             sample = f.read(10240)
-
-        # Check for \r\r\n pattern
-        if b'\r\r\n' in sample:
-            return True
-        return False
-
+        return b'\r\r\n' in sample
     except Exception:
         return False
 
 
 def main():
+    parser = argparse.ArgumentParser(description="Fix V2 CSV line endings.")
+    parser.add_argument("path", nargs="?", help="Target file or directory")
+    parser.add_argument("--dry-run", action="store_true", help="Simulate without changes")
+    parser.add_argument("--no-backup", action="store_true", help="Skip backup creation")
+    args = parser.parse_args()
+
     # Determine target path
     script_path = Path(__file__).resolve()
-    project_root = script_path.parent.parent
-
-    if len(sys.argv) > 1:
-        target_path = Path(sys.argv[1])
-        if not target_path.is_absolute():
-            target_path = project_root / target_path
+    
+    if args.path:
+        target_path = Path(args.path)
     else:
-        target_path = project_root / "CoE_RoI_R" / "localisation"
+        # Try relative to script
+        target_path = script_path.parent.parent / "CoE_RoI_R" / "localisation"
+        if not target_path.exists():
+             target_path = Path(".")
 
     print("=" * 60)
     print("Victoria 2 Localisation Line Ending Fixer")
     print("=" * 60)
     print(f"Target: {target_path}")
-    print(f"Time: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    if args.dry_run:
+        print("MODE: DRY RUN (No changes will be made)")
     print()
 
     if not target_path.exists():
@@ -140,7 +137,7 @@ def main():
     error_count = 0
 
     for file_path in files:
-        success, message = fix_file_line_endings(file_path)
+        success, message = fix_file_line_endings(file_path, dry_run=args.dry_run, no_backup=args.no_backup)
         results.append((file_path, success, message))
 
         if success:
@@ -169,28 +166,6 @@ def main():
     print(f"Already correct:  {skipped_count}")
     print(f"Errors:           {error_count}")
     print()
-
-    # Verify a sample of fixed files
-    if fixed_count > 0:
-        print("Verifying fixed files...")
-        all_verified = True
-        for file_path, success, _ in results:
-            if success and "Already correct" not in _:
-                if verify_file(file_path):
-                    print(f"  [OK] {file_path.name}")
-                else:
-                    print(f"  [FAIL] {file_path.name} - VERIFICATION FAILED!")
-                    all_verified = False
-
-        if all_verified:
-            print()
-            print("[OK] All fixed files verified successfully!")
-        else:
-            print()
-            print("[FAIL] Some files failed verification. Please check manually.")
-
-    print()
-    print("Done!")
 
     return 0 if error_count == 0 else 1
 

@@ -2,8 +2,23 @@
 REM Victoria 2 Localisation Test Script
 REM Usage: Run this after launching and quitting the mod
 
-set ERROR_LOG="D:\Steam\steamapps\common\Victoria 2\error.log"
-set MOD_FOLDER="D:\Steam\steamapps\common\Victoria 2\mod\CoE_RoI_R"
+REM Get script directory
+set SCRIPT_DIR=%~dp0
+
+REM Set paths relative to script (assuming script is in mod/app/)
+REM Adjust if script location changes
+set MOD_FOLDER="%SCRIPT_DIR%..\CoE_RoI_R"
+set ERROR_LOG="%SCRIPT_DIR%..\..\error.log"
+
+REM If that fails, try standard steam path assumption as fallback only
+if not exist %ERROR_LOG% (
+    if exist "D:\Steam\steamapps\common\Victoria 2\error.log" (
+        set ERROR_LOG="D:\Steam\steamapps\common\Victoria 2\error.log"
+    )
+    if exist "C:\Program Files (x86)\Steam\steamapps\common\Victoria 2\error.log" (
+         set ERROR_LOG="C:\Program Files (x86)\Steam\steamapps\common\Victoria 2\error.log"
+    )
+)
 
 echo ====================================================================
 echo Victoria 2 Localisation Test

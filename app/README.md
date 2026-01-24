@@ -1,228 +1,61 @@
-# CoE_RoI_R Localisation Tools
+# V2LocKit (Victoria 2 Localisation Toolkit)
 
-This directory contains Python utilities for managing Victoria 2 localisation files for the **Concert of Europe: Roar of Industry - Reignited** mod.
+A collection of Python scripts to help manage, validate, and fix localisation files for Victoria 2 mods.
 
-## Overview
+## Features
 
-Victoria 2 localisation files use a specific CSV format with Windows-1252 encoding and semicolon delimiters. These tools help maintain and validate these files.
+*   **Duplicate Detection**: Find and remove duplicate keys (which cause dead code).
+*   **Encoding Fixer**: Convert UTF-8 files to Windows-1252 (required by Vic2) and fix line endings.
+*   **Structure Fixer**: Ensure correct 19-column CSV format.
+*   **Missing Key Finder**: Scan event/decision/etc files to find missing localisation keys.
+*   **Safety**: All fixer scripts now support `--dry-run` and create backups by default.
 
-## Available Tools
+## Usage
 
-### 1. check_missing_localizations.py
+Scripts are designed to be run from the command line. They will attempt to auto-detect the mod location if run from the `app` directory, or you can specify paths.
 
-**Purpose**: Analytical tool to detect missing localisations
-
-Scans game files (events, decisions, modifiers) and cross-references them with localisation CSV files to identify missing entries.
-
-**Usage**:
+### 1. Fix Duplicates
+Removes duplicate keys from `text.csv` or other files.
 ```bash
-python app/check_missing_localizations.py [options]
+python fix_text_csv_duplicates.py [path/to/file.csv]
 ```
 
-**Options**:
-- `--verbose`, `-v` - Show all missing entries with details
-- `--fix` - Generate fix files with suggested entries
-- `--output PATH` - Specify output path for reports
-
-**What it does**:
-- Parses event files for titles and descriptions
-- Parses decision files for titles and descriptions
-- Parses modifier files (event_modifiers.txt, triggered_modifiers.txt)
-- Cross-references with all CSV files in localisation/
-- Reports missing localisation keys
-- Generates FIX_*.csv files with suggested entries
-
-**Example**:
+### 2. Fix Newstext Duplicates
+Specific fixer for `newstext_3_01.csv` duplicates.
 ```bash
-# Quick check for missing localisations
-python app/check_missing_localizations.py
-
-# Verbose output with all details
-python app/check_missing_localizations.py --verbose
-
-# Generate fix files
-python app/check_missing_localizations.py --fix
+python fix_newstext_duplicates.py [path/to/file.csv]
 ```
 
----
-
-### 2. fix-localisation.py
-
-**Purpose**: Repair tool for malformed CSV files
-
-Fixes CSV formatting issues, encoding problems, and column count mismatches in localisation files.
-
-**Usage**:
+### 3. Check for Cross-File Duplicates
+Checks if the same key exists in multiple files (later files override earlier ones).
 ```bash
-python app/fix-localisation.py [options] [path]
+python check_duplicate_localizations.py [path/to/localisation/dir]
 ```
 
-**Options**:
-- `--dry-run` - Preview changes without modifying files
-- `--verbose`, `-v` - Show detailed output for each file
-- `--json` - Output results in JSON format
-- `path` - Path to localisation folder or specific file (default: CoE_RoI_R/localisation/)
-
-**What it does**:
-- Detects file encoding (UTF-8, UTF-8-BOM, CP1252)
-- Converts files to Windows-1252 encoding
-- Reads header to determine target column count
-- Normalises all lines to match column count
-- Ensures all lines end with `;x`
-- Creates .bak backup files before modifying
-
-**Example**:
+### 4. Find Missing Localisations
+The big scanner! Checks your events, decisions, etc., and tells you what keys are missing.
 ```bash
-# Preview changes without modifying files
-python app/fix-localisation.py --dry-run
-
-# Fix all localisation files
-python app/fix-localisation.py
-
-# Fix specific file with verbose output
-python app/fix-localisation.py --verbose CoE_RoI_R/localisation/00_PDM_events.csv
+python check_missing_localizations.py [path/to/mod/root]
 ```
 
----
-
-## Workflow Recommendations
-
-### Finding Missing Localisations
-
-1. Run the checker tool:
-   ```bash
-   python app/check_missing_localizations.py --verbose
-   ```
-
-2. Review the generated `MISSING_LOCALIZATIONS_LIST.txt` in the mod directory
-
-3. Add missing entries to the appropriate CSV files in `CoE_RoI_R/localisation/`
-
-### Repairing Broken CSV Files
-
-1. Always preview first:
-   ```bash
-   python app/fix-localisation.py --dry-run --verbose
-   ```
-
-2. If satisfied, run the fix:
-   ```bash
-   python app/fix-localisation.py
-   ```
-
-3. Check the .bak files if anything went wrong
-
-### Complete Maintenance Workflow
-
+### 5. Fix Encoding & Line Endings
+Converts file to Windows-1252 and CRCRLF line endings.
 ```bash
-# 1. Check for missing localisations
-python app/check_missing_localizations.py --verbose > localisation_report.txt
-
-# 2. Add missing entries manually to CSV files
-# (Edit CoE_RoI_R/localisation/*.csv)
-
-# 3. Fix any CSV formatting issues
-python app/fix-localisation.py --dry-run
-python app/fix-localisation.py
-
-# 4. Verify the fixes
-python app/check_missing_localizations.py
+python fix_localisation_encoding.py [path/to/localisation/dir]
+python fix-line-endings.py [path/to/file_or_dir]
 ```
 
----
-
-## File Format Reference
-
-### Victoria 2 CSV Structure
-
-```
-KEY;English;French;German;;Spanish;;;;;;;;;x,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-```
-
-**Components**:
-- **Column 1**: Localisation key (e.g., `EVTNAME12345`, `desc_modifier_name`)
-- **Column 2-15**: Translations (English, French, German, [Reserved], Spanish, etc.)
-- **Column 16**: Must be `x` (end marker)
-- **Trailing commas**: Events require 53 trailing commas, modifiers require 2
-
-**Encoding**: Windows-1252 (ANSI) - NOT UTF-8
-
-**Delimiter**: Semicolon (`;`)
-
----
-
-## Troubleshooting
-
-### "UnicodeEncodeError" when running checker
-
-**Cause**: Console encoding issues on Windows
-
-**Solution**: The tool now handles this automatically with safe_console_string(). If issues persist, redirect output to a file:
+### 6. Fix CSV Structure
+Ensures files have exactly 19 columns (required for Vic2).
 ```bash
-python app/check_missing_localizations.py > report.txt 2>&1
+python fix-csv-structure.py [path/to/file_or_dir]
+python fix-column-count.py [path/to/file_or_dir]
 ```
 
-### "FileNotFoundError: land_units.txt"
-
-**Cause**: Missing optional game file
-
-**Solution**: This is normal. The tool handles missing files gracefully.
-
-### CSV files appear corrupted in text editor
-
-**Cause**: File opened with wrong encoding
-
-**Solution**: Open with Windows-1252 encoding, not UTF-8
-
-### Special characters (ü, ö, é) appear as garbage
-
-**Cause**: Encoding mismatch
-
-**Solution**: Run fix-localisation.py to convert to proper Windows-1252
-
----
-
-## Tool Comparison
-
-| Feature | check_missing_localizations.py | fix-localisation.py |
-|---------|-------------------------------|---------------------|
-| **Primary Purpose** | Find missing entries | Fix broken CSV files |
-| **Input** | Game files + CSV files | CSV files only |
-| **Output** | Reports + FIX files | Repaired CSV files |
-| **Modifies Files** | No (read-only) | Yes (with .bak backup) |
-| **Encoding Detection** | Multi-format | UTF-8/CP1252 |
-| **Encoding Output** | N/A | Windows-1252 |
-| **Column Handling** | Analysis only | Normalises columns |
-| **Backup Files** | No | Yes (.bak) |
-
----
-
-## Version History
-
-### check_missing_localizations.py
-- **v2.1** (2026): Enhanced encoding handling, false positive reduction
-- **v2.0** (2026): Initial comprehensive checker
-
-### fix-localisation.py
-- **v2** (2026): Adaptive column detection, improved encoding handling
-- **v1** (2025): Initial CSV repair tool
-
----
+## Safety Options
+Most fixer scripts support:
+*   `--dry-run`: See what would happen without changing files.
+*   `--no-backup`: Disable automatic backup creation (use with caution!).
 
 ## Requirements
-
-- Python 3.6 or higher
-- Optional: `chardet` package for better encoding detection
-  ```bash
-  pip install chardet
-  ```
-
----
-
-## Support
-
-For issues or questions about these tools, please refer to the main project documentation or create an issue in the project repository.
-
----
-
-**CoE_RoI_R Mod Development Team**
+*   Python 3.6+

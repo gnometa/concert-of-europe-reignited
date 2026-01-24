@@ -67,11 +67,17 @@ except ImportError:
     HAVE_CHARDET = False
 
 # Configuration
-MOD_PATH = Path("D:/Steam/steamapps/common/Victoria 2/mod/CoE_RoI_R")
-COMMON_DIR = MOD_PATH / "common"
-EVENTS_DIR = MOD_PATH / "events"
-DECISIONS_DIR = MOD_PATH / "decisions"
-LOCALISATION_DIR = MOD_PATH / "localisation"
+# Default paths (can remain as fallbacks, but we'll prioritize args)
+# If running as script, we'll try to find paths relative to script
+SCRIPT_DIR = Path(__file__).parent.resolve()
+DEFAULT_MOD_PATH = SCRIPT_DIR.parent / "CoE_RoI_R"
+
+# These will be set in main()
+MOD_PATH = None
+COMMON_DIR = None
+EVENTS_DIR = None
+DECISIONS_DIR = None
+LOCALISATION_DIR = None
 
 # Victoria 2 localization uses Windows-1252 encoding
 ENCODING = "windows-1252"
@@ -683,7 +689,10 @@ def generate_fix_file(missing: Dict[str, List[Tuple[str, str]]], output_path: Pa
 
 
 def main():
+    global MOD_PATH, COMMON_DIR, EVENTS_DIR, DECISIONS_DIR, LOCALISATION_DIR
+    
     parser = argparse.ArgumentParser(description="Check for missing Victoria 2 localizations")
+    parser.add_argument("mod_path", nargs="?", help="Path to mod root directory")
     parser.add_argument("-v", "--verbose", action="store_true", help="Show all missing entries")
     parser.add_argument("-f", "--fix", action="store_true", help="Generate fix files")
     parser.add_argument("-o", "--output", default="missing_localizations",
@@ -696,9 +705,35 @@ def main():
     args = parser.parse_args()
 
     print(f"{Colors.HEADER}{'='*60}{Colors.ENDC}")
-    print(f"{Colors.HEADER}VICTORIA 2 LOCALIZATION CHECKER v2.0{Colors.ENDC}")
+    print(f"{Colors.HEADER}VICTORIA 2 LOCALIZATION CHECKER v2.1{Colors.ENDC}")
     print(f"{Colors.HEADER}{'='*60}{Colors.ENDC}\n")
+
+    # Set up paths
+    if args.mod_path:
+        MOD_PATH = Path(args.mod_path)
+    else:
+        # Try default/relative path
+        MOD_PATH = DEFAULT_MOD_PATH
+        if not MOD_PATH.exists():
+            # Fallback to current dir
+            MOD_PATH = Path(".")
+    
+    MOD_PATH = MOD_PATH.resolve()
     print(f"Mod Path: {MOD_PATH}\n")
+    
+    if not MOD_PATH.exists():
+        print(f"{Colors.FAIL}Error: Mod path does not exist: {MOD_PATH}{Colors.ENDC}")
+        return 1
+        
+    COMMON_DIR = MOD_PATH / "common"
+    EVENTS_DIR = MOD_PATH / "events"
+    DECISIONS_DIR = MOD_PATH / "decisions"
+    LOCALISATION_DIR = MOD_PATH / "localisation"
+
+    # Check if critical directories exist
+    if not LOCALISATION_DIR.exists():
+         print(f"{Colors.FAIL}Error: Localisation directory not found at: {LOCALISATION_DIR}{Colors.ENDC}")
+         return 1
 
     # Special mode: scan for specific pattern
     if args.scan_money_hoarder:

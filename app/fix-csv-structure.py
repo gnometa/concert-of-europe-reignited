@@ -3,19 +3,17 @@
 Victoria 2 CSV Structure Fixer
 ==============================
 
-Forces all CSV files to match Victoria 2's exact column structure:
-- Columns 1-14: Content (key, translations, etc.)
-- Column 15: x (terminator)
-- Columns 16-19: Empty
-
-This is the ONLY format Victoria 2 accepts.
+Forces all CSV files to match Victoria 2's exact column structure.
 """
 
 import sys
+import argparse
+import shutil
 from pathlib import Path
+from datetime import datetime
 
 
-def fix_csv_file(file_path: Path) -> bool:
+def fix_csv_file(file_path: Path, dry_run=False, no_backup=False) -> bool:
     """Fix a single CSV file to exact Victoria 2 format."""
     try:
         # Read as binary to preserve encoding
@@ -30,31 +28,25 @@ def fix_csv_file(file_path: Path) -> bool:
 
         lines = text.split('\n')
         fixed_lines = []
+        
+        # Check if change matches current state to avoid needless writes could be done,
+        # but exact byte matching on decoded/re-encoded text is tricky.
+        # So we reconstruct and see.
 
         for line in lines:
             if not line.strip():
-                # Keep empty lines
                 fixed_lines.append('')
                 continue
 
-            # Split by semicolon
             parts = line.rstrip('\r\n').split(';')
-
-            # Remove any existing 'x' terminators from the content
-            # We'll enforce our own structure
             clean_parts = []
             for part in parts:
                 if part.strip() == 'x':
-                    # Skip 'x' values - they're terminators in wrong places
                     if not clean_parts:
-                        # But keep 'x' if it's the first column (unlikely but possible)
                         clean_parts.append(part)
-                    # Otherwise skip it
                 else:
                     clean_parts.append(part)
 
-            # Enforce exact structure: 14 content columns, then 'x', then 4 empty columns
-            # Take first 14 columns (or pad if fewer)
             if len(clean_parts) >= 14:
                 new_parts = clean_parts[:14]
             else:
@@ -62,25 +54,37 @@ def fix_csv_file(file_path: Path) -> bool:
                 while len(new_parts) < 14:
                     new_parts.append('')
 
-            # Column 15 MUST be 'x'
             new_parts.append('x')
-
-            # Columns 16-19 must be empty
             while len(new_parts) < 19:
                 new_parts.append('')
 
             fixed_lines.append(';'.join(new_parts))
 
-        # Re-encode with Victoria 2 line endings (\r\r\n)
         fixed_content = '\r\r\n'.join(fixed_lines)
-
-        # Ensure file ends with line ending
         if not fixed_content.endswith('\r\r\n'):
             fixed_content += '\r\r\n'
 
+        fixed_bytes = fixed_content.encode('cp1252', errors='replace')
+        
+        # Simple check if anything effectively changed
+        if fixed_bytes == content:
+             return True # No changes needed
+
+        if dry_run:
+            print(f"  [DRY RUN] Would fix {file_path.name}")
+            return True
+
+        # Backup
+        if not no_backup:
+            backup_path = file_path.with_suffix(file_path.suffix + '.bak_' + datetime.now().strftime('%Y%m%d_%H%M%S'))
+            try:
+                shutil.copy2(file_path, backup_path)
+            except Exception as e:
+                print(f"  [WARN] Backup failed: {e}")
+
         # Write back
         with open(file_path, 'wb') as f:
-            f.write(fixed_content.encode('cp1252', errors='replace'))
+            f.write(fixed_bytes)
 
         return True
 
@@ -90,27 +94,33 @@ def fix_csv_file(file_path: Path) -> bool:
 
 
 def main():
-    script_path = Path(__file__).resolve()
-    project_root = script_path.parent.parent
+    parser = argparse.ArgumentParser(description="Fix V2 CSV structure.")
+    parser.add_argument("path", nargs="?", help="Target file or directory")
+    parser.add_argument("--dry-run", action="store_true", help="Simulate without changes")
+    parser.add_argument("--no-backup", action="store_true", help="Skip backup creation")
+    args = parser.parse_args()
 
-    if len(sys.argv) > 1:
-        target_path = Path(sys.argv[1])
-        if not target_path.is_absolute():
-            target_path = project_root / target_path
+    script_path = Path(__file__).resolve()
+    
+    if args.path:
+        target_path = Path(args.path)
     else:
-        target_path = project_root / "CoE_RoI_R" / "localisation"
+        target_path = script_path.parent.parent / "CoE_RoI_R" / "localisation"
+        if not target_path.exists():
+            target_path = Path(".")
 
     print("=" * 60)
     print("Victoria 2 CSV Structure Fixer")
     print("=" * 60)
     print(f"Target: {target_path}")
+    if args.dry_run:
+        print("MODE: DRY RUN")
     print()
 
     if not target_path.exists():
         print(f"ERROR: Path not found: {target_path}")
         return 1
 
-    # Collect CSV files
     if target_path.is_file():
         files = [target_path]
     else:
@@ -125,14 +135,14 @@ def main():
 
     fixed = 0
     for file_path in files:
-        if fix_csv_file(file_path):
+        if fix_csv_file(file_path, dry_run=args.dry_run, no_backup=args.no_backup):
             print(f"  [OK] {file_path.name}")
             fixed += 1
         else:
             print(f"  [FAIL] {file_path.name}")
 
     print()
-    print(f"Done! Fixed {fixed} file(s).")
+    print(f"Done! Processed {fixed} file(s).")
     return 0
 
 

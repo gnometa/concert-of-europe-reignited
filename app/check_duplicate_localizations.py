@@ -4,29 +4,23 @@
 Check for duplicate localisation keys across CSV files.
 
 Victoria 2 loads localisation files in reverse lexicographic order (Z->A).
-Later files override earlier ones for matching keys. This script identifies:
-1. Duplicate keys within the same file (error - causes parsing issues)
-2. Duplicate keys across multiple files (warning - later overrides earlier)
+Later files override earlier ones for matching keys.
 """
 
 import os
 import sys
+import argparse
 from collections import defaultdict
 
 def parse_csv_keys(filepath):
     """
     Parse a CSV file and extract all localisation keys.
-
-    Args:
-        filepath: Path to the CSV file
-
-    Returns:
-        Dictionary mapping keys to line numbers where they appear
     """
     keys = defaultdict(list)
 
     try:
-        with open(filepath, 'r', encoding='utf-8', errors='ignore') as f:
+        # Use Windows-1252 encoding standard for Vic2
+        with open(filepath, 'r', encoding='windows-1252', errors='replace') as f:
             for line_num, line in enumerate(f, 1):
                 line = line.strip()
 
@@ -45,18 +39,12 @@ def parse_csv_keys(filepath):
         return dict(keys)
 
     except Exception as e:
-        sys.stderr.write("Error parsing {0}: {1}\n".format(filepath, str(e)))
+        sys.stderr.write(f"Error parsing {filepath}: {e}\n")
         return {}
 
 def check_duplicates_in_file(filepath):
     """
     Check for duplicate keys within a single file.
-
-    Args:
-        filepath: Path to the CSV file
-
-    Returns:
-        List of (key, count, line_numbers) tuples for duplicates found
     """
     keys = parse_csv_keys(filepath)
     duplicates = []
@@ -70,12 +58,6 @@ def check_duplicates_in_file(filepath):
 def check_duplicates_across_files(directory):
     """
     Check for duplicate keys across all CSV files.
-
-    Args:
-        directory: Path to the localisation directory
-
-    Returns:
-        Dictionary mapping keys to list of (filename, line_number) tuples
     """
     csv_files = sorted([f for f in os.listdir(directory) if f.endswith('.csv')], reverse=True)
     all_keys = defaultdict(list)
@@ -95,55 +77,63 @@ def check_duplicates_across_files(directory):
 
 def main():
     """Main entry point for the duplicate checker."""
-    localisation_dir = r"D:\Steam\steamapps\common\Victoria 2\mod\CoE_RoI_R\localisation"
+    parser = argparse.ArgumentParser(description="Check for duplicate localisation keys in Victoria 2 mod.")
+    parser.add_argument("directory", nargs="?", help="Path to localisation directory (default: detects relative path)")
+    args = parser.parse_args()
+
+    # Determine directory
+    localisation_dir = args.directory
+    if not localisation_dir:
+         # Try to find directory relative to script location
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        potential_path = os.path.join(script_dir, "..", "CoE_RoI_R", "localisation")
+        potential_path = os.path.abspath(potential_path)
+        
+        if os.path.exists(potential_path):
+            localisation_dir = potential_path
+        else:
+            localisation_dir = "."
 
     if not os.path.exists(localisation_dir):
-        sys.stderr.write("Error: Directory not found: {0}\n".format(localisation_dir))
+        sys.stderr.write(f"Error: Directory not found: {localisation_dir}\n")
         return 1
 
     sys.stdout.write("=" * 70 + "\n")
     sys.stdout.write("Victoria 2 Localisation Duplicate Checker\n")
     sys.stdout.write("=" * 70 + "\n")
-    sys.stdout.write("\n")
+    sys.stdout.write(f"Scanning directory: {localisation_dir}\n\n")
 
     csv_files = sorted([f for f in os.listdir(localisation_dir) if f.endswith('.csv')], reverse=True)
 
     if not csv_files:
-        sys.stderr.write("Error: No CSV files found in {0}\n".format(localisation_dir))
+        sys.stderr.write(f"Error: No CSV files found in {localisation_dir}\n")
         return 1
 
-    sys.stdout.write("[1/2] Checking for duplicates WITHIN individual files...\n")
-    sys.stdout.write("\n")
+    sys.stdout.write("[1/2] Checking for duplicates WITHIN individual files...\n\n")
 
     # Check for duplicates within each file
     has_intra_file_duplicates = False
-    duplicate_count = 0
-
+    
     for filename in csv_files:
         filepath = os.path.join(localisation_dir, filename)
         duplicates = check_duplicates_in_file(filepath)
 
         if duplicates:
             has_intra_file_duplicates = True
-            sys.stdout.write("File: {0}\n".format(filename))
+            sys.stdout.write(f"File: {filename}\n")
 
             for key, count, line_numbers in duplicates[:10]:  # Show first 10
-                sys.stdout.write("  - '{0}' appears {1} times at lines: {2}\n".format(
-                    key, count, line_numbers
-                ))
-                duplicate_count += count - 1
+                sys.stdout.write(f"  - '{key}' appears {count} times at lines: {line_numbers}\n")
 
             if len(duplicates) > 10:
-                sys.stdout.write("  ... and {0} more duplicates\n".format(len(duplicates) - 10))
+                sys.stdout.write(f"  ... and {len(duplicates) - 10} more duplicates\n")
 
             sys.stdout.write("\n")
 
     if not has_intra_file_duplicates:
-        sys.stdout.write("No duplicates found within individual files.\n")
-        sys.stdout.write("\n")
+        sys.stdout.write("No duplicates found within individual files.\n\n")
 
-    sys.stdout.write("[2/2] Checking for duplicates ACROSS multiple files...\n")
-    sys.stdout.write("\n")
+    sys.stdout.write("[2/2] Checking for duplicates ACROSS multiple files...\n\n")
 
     # Check for duplicates across files
     all_duplicates = check_duplicates_across_files(localisation_dir)
@@ -152,18 +142,17 @@ def main():
         # Sort by number of occurrences
         sorted_duplicates = sorted(all_duplicates.items(), key=lambda x: len(x[1]), reverse=True)
 
-        sys.stdout.write("Keys appearing in multiple files (later files override earlier):\n")
-        sys.stdout.write("\n")
+        sys.stdout.write("Keys appearing in multiple files (later files override earlier):\n\n")
 
         # Show first 20 most common duplicates
         shown = 0
         for key, locations in sorted_duplicates:
             if shown >= 20:
                 remaining = len(sorted_duplicates) - 20
-                sys.stdout.write("... and {0} more keys with duplicates\n".format(remaining))
+                sys.stdout.write(f"... and {remaining} more keys with duplicates\n")
                 break
 
-            sys.stdout.write("Key: '{0}' ({1} occurrences)\n".format(key, len(locations)))
+            sys.stdout.write(f"Key: '{key}' ({len(locations)} occurrences)\n")
 
             # Group by file
             file_locations = defaultdict(list)
@@ -172,60 +161,18 @@ def main():
 
             for filename in sorted(file_locations.keys(), reverse=True):
                 lines = file_locations[filename]
-                if len(lines) == 1:
-                    sys.stdout.write("  - {0}: line {1}\n".format(filename, lines[0]))
-                else:
-                    sys.stdout.write("  - {0}: lines {1}\n".format(filename, lines))
+                lines_str = f"lines {lines}" if len(lines) > 1 else f"line {lines[0]}"
+                sys.stdout.write(f"  - {filename}: {lines_str}\n")
 
             sys.stdout.write("\n")
             shown += 1
 
-        # Identify problematic cases (same key with different translations)
-        sys.stdout.write("\n")
-        sys.stdout.write("Checking for conflicting translations...\n")
-        sys.stdout.write("\n")
-
-        conflicts_found = False
-        for key, locations in sorted_duplicates[:50]:  # Check first 50
-            translations = {}
-
-            for filename, line_num in locations:
-                filepath = os.path.join(localisation_dir, filename)
-                try:
-                    with open(filepath, 'r', encoding='utf-8', errors='ignore') as f:
-                        for i, line in enumerate(f, 1):
-                            if i == line_num:
-                                # Extract translation (second field)
-                                parts = line.strip().split(';')
-                                if len(parts) >= 2:
-                                    translation = parts[1].strip()
-                                    if translation:
-                                        translations[filename] = translation
-                                break
-                except:
-                    pass
-
-            # Check if translations differ
-            unique_translations = set(translations.values())
-            if len(unique_translations) > 1:
-                conflicts_found = True
-                sys.stdout.write("CONFLICT: Key '{0}' has different translations:\n".format(key))
-                for filename, translation in translations.items():
-                    sys.stdout.write("  - {0}: \"{1}\"\n".format(filename, translation[:50]))
-                sys.stdout.write("\n")
-
-        if not conflicts_found:
-            sys.stdout.write("No conflicting translations found (all duplicates have identical text).\n")
-            sys.stdout.write("\n")
-
     else:
-        sys.stdout.write("No duplicate keys found across files.\n")
-        sys.stdout.write("\n")
+        sys.stdout.write("No duplicate keys found across files.\n\n")
 
     sys.stdout.write("=" * 70 + "\n")
     sys.stdout.write("Summary\n")
-    sys.stdout.write("=" * 70 + "\n")
-    sys.stdout.write("\n")
+    sys.stdout.write("=" * 70 + "\n\n")
 
     if has_intra_file_duplicates:
         sys.stdout.write("[!] CRITICAL: Found duplicates WITHIN files.\n")
@@ -233,14 +180,10 @@ def main():
     else:
         sys.stdout.write("[OK] No duplicates found within individual files.\n")
 
-    sys.stdout.write("\n")
-
     if all_duplicates:
-        sys.stdout.write("[INFO] Found {0} duplicate keys ACROSS files.\n".format(len(all_duplicates)))
-        sys.stdout.write("    Victoria 2 uses the LAST occurrence (lexicographic order Z->A).\n")
-        sys.stdout.write("    Ensure intentional overrides use proper file naming (00_ prefix).\n")
+        sys.stdout.write(f"\n[INFO] Found {len(all_duplicates)} duplicate keys ACROSS files.\n")
     else:
-        sys.stdout.write("[OK] No duplicate keys found across files.\n")
+        sys.stdout.write("\n[OK] No duplicate keys found across files.\n")
 
     sys.stdout.write("\n")
 
