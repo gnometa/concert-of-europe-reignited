@@ -1,0 +1,138 @@
+money_hoarder_1;Overflowing Coffers;;;;;;;;;;;;;x
+money_hoarder_1_desc;The national treasury bulges with gold and silver. Our citizens look expectantly to the government, demanding their fair share of this bounty in the form of pensions and social programs.;;;;;;;;;;;;;x
+money_hoarder_2;Gilded Treasury;;;;;;;;;;;;;x
+money_hoarder_2_desc;Mountains of wealth have accumulated in our vaults. The populace grows restless, and politicians scramble to distribute these riches lest calls for reform grow louder.;;;;;;;;;;;;;x
+money_hoarder_3;Legendary Wealth;;;;;;;;;;;;;x
+money_hoarder_3_desc;Our nation's wealth has become the envy of all nations. Such fortune cannot be hoarded indefinitely - the people demand that it flow back into society through generous social programs.;;;;;;;;;;;;;x
+money_hoarder_4;Treasury Beyond Measure;;;;;;;;;;;;;x
+money_hoarder_4_desc;The wealth accumulated in our treasury defies comprehension. No vault can contain it, no ledger can account for it. One way or another, these riches must find their way to the people.;;;;;;;;;;;;;x
+admin_found_1;Nascent Bureaucracy;;;;;;;;;;;;;x
+admin_found_1_desc;The first stirrings of an organized civil service have emerged. Though humble, these clerks and administrators bring order where once there was chaos.;;;;;;;;;;;;;x
+admin_found_2;Growing Civil Service;;;;;;;;;;;;;x
+admin_found_2_desc;Our bureaucracy takes root and spreads its tendrils throughout the nation. Forms are filed, records kept, and the machinery of government slowly turns.;;;;;;;;;;;;;x
+admin_found_3;Established Administration;;;;;;;;;;;;;x
+admin_found_3_desc;A proper civil service now manages the affairs of state. Tax collectors know their districts, magistrates their jurisdictions, and the government functions with purpose.;;;;;;;;;;;;;x
+admin_found_4;Professional Bureaucracy;;;;;;;;;;;;;x
+admin_found_4_desc;Career administrators now staff our ministries. They are trained, examined, and appointed on merit. The state apparatus hums with quiet efficiency.;;;;;;;;;;;;;x
+admin_found_5;Exemplary Civil Service;;;;;;;;;;;;;x
+admin_found_5_desc;Our administrative corps has become the envy of lesser nations. Corruption is rare, delays uncommon, and the will of the state is executed with precision.;;;;;;;;;;;;;x
+admin_found_6;Superior Administration;;;;;;;;;;;;;x
+admin_found_6_desc;The finest minds of the realm are drawn to public service. They bring innovation and diligence to governance, making our nation a model of bureaucratic excellence.;;;;;;;;;;;;;x
+admin_found_7;Elite Governance;;;;;;;;;;;;;x
+admin_found_7_desc;Our civil servants are the elite of the elite, selected through rigorous examination and trained in the finest academies. The state functions like a well-oiled machine.;;;;;;;;;;;;;x
+admin_found_8;Bureaucratic Mastery;;;;;;;;;;;;;x
+admin_found_8_desc;Foreign dignitaries marvel at our administrative efficiency. Every department works in harmony, every office knows its purpose. We have achieved true bureaucratic mastery.;;;;;;;;;;;;;x
+admin_found_9;Administrative Perfection;;;;;;;;;;;;;x
+admin_found_9_desc;Our civil service approaches perfection. Decisions flow smoothly from policy to implementation, and the state's reach extends to every corner of the realm with flawless execution.;;;;;;;;;;;;;x
+admin_found_10;Pinnacle of Governance;;;;;;;;;;;;;x
+admin_found_10_desc;We have achieved what philosophers only dreamed of - a state apparatus of unparalleled efficiency. Our administration is the finest the world has ever known.;;;;;;;;;;;;;x
+milit_found_1;Militia Traditions;;;;;;;;;;;;;x
+milit_found_1_desc;Our military traditions, though modest, provide the foundation upon which a proper army may be built. Raw recruits at least know which end of the rifle to point at the enemy.;;;;;;;;;;;;;x
+milit_found_2;Martial Heritage;;;;;;;;;;;;;x
+milit_found_2_desc;Tales of past battles inspire our soldiers. Veterans pass on hard-won wisdom to new recruits, and our officer corps begins to develop professional standards.;;;;;;;;;;;;;x
+milit_found_3;Proven Military;;;;;;;;;;;;;x
+milit_found_3_desc;Our armed forces have been tested in battle and emerged stronger. Professional soldiers form the backbone of an army that foreign powers have learned to respect.;;;;;;;;;;;;;x
+milit_found_4;Superior Arms;;;;;;;;;;;;;x
+milit_found_4_desc;Our military machine has been honed to a fine edge. Officers study the art of war with scientific precision, and our soldiers are among the finest trained in the world.;;;;;;;;;;;;;x
+milit_found_5;Military Excellence;;;;;;;;;;;;;x
+milit_found_5_desc;We have achieved military excellence that few nations can match. Our armies march with discipline and purpose, led by officers whose skill is legendary.;;;;;;;;;;;;;x
+poor_development_1;Primitive Backwater;;;;;;;;;;;;;x
+poor_development_1_desc;Our nation languishes in primitive conditions. Roads are little more than muddy tracks, and modern conveniences remain unknown to most of our people.;;;;;;;;;;;;;x
+poor_development_2;Undeveloped Wilderness;;;;;;;;;;;;;x
+poor_development_2_desc;Vast stretches of our nation remain wild and untamed. Development has barely scratched the surface of what could be achieved.;;;;;;;;;;;;;x
+poor_development_3;Struggling Development;;;;;;;;;;;;;x
+poor_development_3_desc;Efforts to modernize proceed slowly against countless obstacles. Infrastructure remains woefully inadequate for the demands of modern commerce.;;;;;;;;;;;;;x
+poor_development_4;Lagging Progress;;;;;;;;;;;;;x
+poor_development_4_desc;While other nations race ahead, we struggle to keep pace. Development projects stall for lack of funds and expertise.;;;;;;;;;;;;;x
+poor_development_5;Modest Infrastructure;;;;;;;;;;;;;x
+poor_development_5_desc;Some progress has been made, but much remains to be done. The foundations of modernity are being laid, however slowly.;;;;;;;;;;;;;x
+poor_development_6;Improving Conditions;;;;;;;;;;;;;x
+poor_development_6_desc;The fruits of development are beginning to appear. Here and there, signs of progress give hope for the future.;;;;;;;;;;;;;x
+poor_development_7;Developing Nation;;;;;;;;;;;;;x
+poor_development_7_desc;We are finally emerging from backwardness. New roads, schools, and public works announce our entry into the modern age.;;;;;;;;;;;;;x
+poor_development_8;Rising Standards;;;;;;;;;;;;;x
+poor_development_8_desc;Development accelerates as past investments bear fruit. Our nation increasingly resembles those of the civilized world.;;;;;;;;;;;;;x
+poor_development_9;Approaching Modernity;;;;;;;;;;;;;x
+poor_development_9_desc;The gap between our nation and the developed powers narrows. Modern infrastructure spreads to even remote regions.;;;;;;;;;;;;;x
+poor_development_10;Nearly Developed;;;;;;;;;;;;;x
+poor_development_10_desc;We stand at the threshold of full development. Only a few more improvements separate us from the ranks of modern nations.;;;;;;;;;;;;;x
+middle_development_1;Adequate Infrastructure;;;;;;;;;;;;;x
+middle_development_1_desc;Our nation has achieved a respectable level of development. Roads connect major cities, and postal services function reliably.;;;;;;;;;;;;;x
+middle_development_2;Functional Modernity;;;;;;;;;;;;;x
+middle_development_2_desc;The apparatus of a modern state is in place. Commerce flows, industry grows, and citizens enjoy reasonable standards of living.;;;;;;;;;;;;;x
+middle_development_3;Solid Foundations;;;;;;;;;;;;;x
+middle_development_3_desc;Our infrastructure serves the nation well. Railways reach most population centers, and telegraph lines speed communication across the realm.;;;;;;;;;;;;;x
+middle_development_4;Growing Prosperity;;;;;;;;;;;;;x
+middle_development_4_desc;Development breeds development. As our infrastructure improves, so too does our capacity for further growth.;;;;;;;;;;;;;x
+middle_development_5;Thriving Nation;;;;;;;;;;;;;x
+middle_development_5_desc;Our nation thrives as modern infrastructure enables commerce and industry to flourish. The future looks bright indeed.;;;;;;;;;;;;;x
+middle_development_6;Progressive Development;;;;;;;;;;;;;x
+middle_development_6_desc;We continue to progress and modernize. Each year brings new improvements to our roads, rail lines, and public facilities.;;;;;;;;;;;;;x
+middle_development_7;Modern Standards;;;;;;;;;;;;;x
+middle_development_7_desc;Our development meets the standards of modern nations. Visitors remark on our efficient infrastructure and orderly cities.;;;;;;;;;;;;;x
+middle_development_8;Advanced Economy;;;;;;;;;;;;;x
+middle_development_8_desc;Our economic infrastructure supports sophisticated industry and commerce. We have taken our place among the developed nations.;;;;;;;;;;;;;x
+middle_development_9;Excellent Development;;;;;;;;;;;;;x
+middle_development_9_desc;Few nations can boast infrastructure as fine as ours. Modern amenities reach even remote corners of the realm.;;;;;;;;;;;;;x
+middle_development_10;Peak Development;;;;;;;;;;;;;x
+middle_development_10_desc;We have achieved remarkable development for a nation of our size. Our infrastructure is a model for others to follow.;;;;;;;;;;;;;x
+rich_development_1;Prosperous Nation;;;;;;;;;;;;;x
+rich_development_1_desc;Our nation's wealth is reflected in its fine roads, grand public buildings, and modern conveniences available to all citizens.;;;;;;;;;;;;;x
+rich_development_2;Wealthy Land;;;;;;;;;;;;;x
+rich_development_2_desc;Prosperity abounds in our developed nation. Industry hums, commerce flourishes, and the fruits of modernity are enjoyed by rich and poor alike.;;;;;;;;;;;;;x
+rich_development_3;Enviable Development;;;;;;;;;;;;;x
+rich_development_3_desc;Other nations look upon our infrastructure with envy. We have achieved development that seemed impossible only decades ago.;;;;;;;;;;;;;x
+rich_development_4;Exceptional Progress;;;;;;;;;;;;;x
+rich_development_4_desc;Our nation stands as a testament to what can be achieved through investment and vision. Development has transformed every aspect of life.;;;;;;;;;;;;;x
+rich_development_5;Model of Modernity;;;;;;;;;;;;;x
+rich_development_5_desc;We have become a model of modern development. Foreign delegations visit to learn from our example.;;;;;;;;;;;;;x
+rich_development_6;Industrial Paradise;;;;;;;;;;;;;x
+rich_development_6_desc;Our infrastructure supports one of the most productive economies in the world. Industry and commerce thrive in equal measure.;;;;;;;;;;;;;x
+rich_development_7;Magnificent Development;;;;;;;;;;;;;x
+rich_development_7_desc;The transformation of our nation is little short of miraculous. From humble beginnings, we have built something magnificent.;;;;;;;;;;;;;x
+rich_development_8;Economic Powerhouse;;;;;;;;;;;;;x
+rich_development_8_desc;Our development has made us an economic powerhouse. The world's goods flow through our ports and along our railways.;;;;;;;;;;;;;x
+rich_development_9;Unrivaled Infrastructure;;;;;;;;;;;;;x
+rich_development_9_desc;Our infrastructure is virtually unrivaled. Every modern convenience, every industrial requirement is met with excellence.;;;;;;;;;;;;;x
+rich_development_10;Pinnacle of Civilization;;;;;;;;;;;;;x
+rich_development_10_desc;We stand at the pinnacle of human development. Our nation is a beacon of progress, a testament to what civilization can achieve.;;;;;;;;;;;;;x
+city_state;City State;;;;;;;;;;;;;x
+city_state_desc;Our nation consists of little more than a single great city and its immediate surroundings. We survive by wit rather than might.;;;;;;;;;;;;;x
+grand_army;Grand Army;;;;;;;;;;;;;x
+grand_army_desc;The thunder of a hundred divisions marching across the land announces our military might. We possess one of the mightiest armies the world has ever seen.;;;;;;;;;;;;;x
+grand_navy;Grand Navy;;;;;;;;;;;;;x
+grand_navy_desc;Our fleet dominates the seas. Hundreds of vessels flying our flag patrol the world's oceans, projecting our power to distant shores.;;;;;;;;;;;;;x
+no_navy;No Navy;;;;;;;;;;;;;x
+no_navy_desc;Though we possess ports, not a single ship of war flies our flag. Our coasts lie defenseless and our trade at the mercy of others.;;;;;;;;;;;;;x
+small_navy;Small Navy;;;;;;;;;;;;;x
+small_navy_desc;A handful of vessels constitute our entire navy. They serve more as coast guard than as a true naval force.;;;;;;;;;;;;;x
+respectable_navy;Respectable Navy;;;;;;;;;;;;;x
+respectable_navy_desc;We maintain a respectable fleet capable of defending our waters and protecting our merchant vessels on the high seas.;;;;;;;;;;;;;x
+landlocked_nation;Landlocked Nation;;;;;;;;;;;;;x
+landlocked_nation_desc;Surrounded by foreign territory on all sides, we have no access to the sea. Our commerce must pass through neighbors who may not always be friendly.;;;;;;;;;;;;;x
+large_nation;Large Nation;;;;;;;;;;;;;x
+large_nation_desc;Our realm stretches across a significant expanse of territory. We are no minor power to be dismissed or ignored by the great nations.;;;;;;;;;;;;;x
+small_nation;Small Nation;;;;;;;;;;;;;x
+small_nation_desc;We are a small nation, easy to overlook on the maps of greater powers. Yet even the smallest nation has its pride and its place in history.;;;;;;;;;;;;;x
+sprawling_empire;Sprawling Empire;;;;;;;;;;;;;x
+sprawling_empire_desc;Our dominion stretches across vast territories, an empire upon which the sun never sets. Administering such an expanse brings both power and challenge.;;;;;;;;;;;;;x
+vassal_nation;Vassal State;;;;;;;;;;;;;x
+vassal_nation_desc;We exist at the pleasure of our overlord. Our sovereignty is limited, our independence a polite fiction. Yet even vassals may dream of freedom.;;;;;;;;;;;;;x
+social_dissent;Social Dissent;;;;;;;;;;;;;x
+social_dissent_desc;Murmurs of discontent echo through the streets. Workers gather in taverns to discuss grievances, and pamphlets circulate calling for change.;;;;;;;;;;;;;x
+social_tensions;Social Tensions;;;;;;;;;;;;;x
+social_tensions_desc;Tensions simmer beneath the surface of society. Strikes and demonstrations have become common, and the specter of unrest haunts the halls of power.;;;;;;;;;;;;;x
+social_disorder;Social Disorder;;;;;;;;;;;;;x
+social_disorder_desc;Order breaks down as anger spills into the streets. Riots flare up without warning, property is destroyed, and the forces of law struggle to maintain control.;;;;;;;;;;;;;x
+social_chaos;Social Chaos;;;;;;;;;;;;;x
+social_chaos_desc;Society teeters on the brink of collapse. Revolution hangs in the air like the smell of gunpowder, and the government's grip on power grows ever more tenuous.;;;;;;;;;;;;;x
+the_beginnings_trig;Dawn of an Era;;;;;;;;;;;;;x
+the_beginnings_trig_desc;The old world still slumbers, unaware of the transformations that await. In these early years, tradition holds sway and the fever of change has yet to grip the masses.;;;;;;;;;;;;;x
+the_concert_of_europe;The Concert of Europe;;;;;;;;;;;;;x
+the_concert_of_europe_desc;The great powers have agreed to maintain the balance established at Vienna. Through diplomacy and mutual restraint, they seek to preserve peace and order across the continent.;;;;;;;;;;;;;x
+the_police_state_effect;Police State;;;;;;;;;;;;;x
+the_police_state_effect_desc;The secret police are everywhere - in the cafes, the factories, perhaps even within one's own family. Dissent is crushed before it can spread, order maintained through fear.;;;;;;;;;;;;;x
+winds_of_change;Winds of Change;;;;;;;;;;;;;x
+winds_of_change_desc;The colonial powers carve up the world, and those who have not modernized now feel the urgency of change. Adapt or perish - the choice is stark.;;;;;;;;;;;;;x
+occupied_capital;Capital Under Occupation;;;;;;;;;;;;;x
+occupied_capital_desc;The unthinkable has occurred - enemy boots march through our capital's streets. Our government rules from exile, and our people suffer under foreign occupation.;;;;;;;;;;;;;x

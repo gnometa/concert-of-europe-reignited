@@ -695,55 +695,82 @@ cb_name = {
 
 ## Localisation
 
-### File Format
+> **📘 Official Reference:** See [`docs/localisation_wiki.md`](docs/localisation_wiki.md) for the complete Victoria 2 localisation guide, including the full dynamic variable reference table ($ACTION$ through $YESTERDAY$), special characters, cabinet position keys, and troubleshooting.
 
-- **Location:** `/localisation/*.csv`
-- **Encoding:** Windows-1252 (ANSI) - NOT UTF-8
-- **Delimiter:** Semicolon (`;`)
-- **Line ending:** Must end with `;x`
+### Quick Reference
 
-### Column Structure
+| Setting | Value |
+|---------|-------|
+| **Location** | `/localisation/*.csv` |
+| **Encoding** | Windows-1252 (ANSI) - **NOT UTF-8** |
+| **Delimiter** | Semicolon (`;`) |
+| **Line ending** | Must end with `;x;` |
+| **Columns** | 14 semicolon-separated fields |
+| **Empty lines** | Avoid - causes parsing issues |
+
+### File Load Priority
+
+Files load in **reverse lexicographic order** (Z→A, 9→0). Later files override earlier ones for matching keys.
+
+**Override Strategy:** Prefix mod files with `0` or `00` to load last:
+- `00_MyMod_events.csv` overrides `beta1.csv`
+- Use `000_` prefix for highest priority
+
+### Column Structure (14 fields)
 
 ```csv
-KEY;ENGLISH;FRENCH;GERMAN;;SPANISH;;;;;;;;;x
+KEY;English;French;German;;Spanish;;;;;;;;x;
 ```
 
-| Column | Language |
-|--------|----------|
-| 1 | Key |
-| 2 | English |
-| 3 | French |
-| 4 | German |
-| 5 | (Reserved) |
-| 6 | Spanish |
-| 7-14 | (Reserved) |
-| 15 | End marker (x) |
+| Col | Content | Col | Content |
+|:---:|---------|:---:|---------|
+| 1 | Localisation Key | 8-13 | (Reserved/unused) |
+| 2 | English | 14 | End marker (`x`) |
+| 3 | French | | |
+| 4 | German | | |
+| 5 | (Polish - unused) | | |
+| 6 | Spanish | | |
+| 7 | (Unused) | | |
 
-### Common Keys
+**Note:** Empty language fields are valid, but all semicolons must be present.
+
+### Common Key Patterns
 
 ```csv
-EVTNAME12345;Event Title;;;;;;;;;;;;;x
-EVTDESC12345;Event description text;;;;;;;;;;;;;x
-EVTOPTA12345;Option A text;;;;;;;;;;;;;x
-decision_name_title;Decision Title;;;;;;;;;;;;;x
-decision_name_desc;Decision tooltip description;;;;;;;;;;;;;x
-TAG;Country Name;;;;;;;;;;;;;x
-TAG_ADJ;Country Adjective;;;;;;;;;;;;;x
+EVTNAME12345;Event Title;Titre;;;;;;;;;;;;x;
+EVTDESC12345;Event description text;Description;;;;;;;;;;;;x;
+EVTOPTA12345;Option A text;Option A;;;;;;;;;;;;x;
+decision_name_title;Decision Title;Titre de décision;;;;;;;;;;;;x;
+decision_name_desc;Decision description;Description;;;;;;;;;;;;x;
+TAG;Country Name;Nom du pays;;;;;;;;;;;;x;
+TAG_ADJ;Country Adjective;Adjectif;;;;;;;;;;;;x;
+TAG_democracy;Republic of X;République de X;;;;;;;;;;;;x;
 ```
 
 ### Color Codes
 
-Use `§` followed by a letter:
-- `§R` Red, `§G` Green, `§B` Blue
-- `§Y` Yellow, `§W` White, `§O` Orange
-- `§!` Reset to default
+| Code | Color | Code | Color |
+|:-----|:------|:-----|:------|
+| `§W` | White | `§g` | Light grey |
+| `§Y` | Yellow | `§!` | Reset to default |
+| `§R` | Red | `§b` | Black |
+| `§G` | Green | | |
+| `§B` | Blue | | |
 
-### Dynamic Variables
+### Common Dynamic Variables
 
-- `$COUNTRY$` - Country name
-- `$FROMCOUNTRY$` - FROM country name
-- `$DATE$` - Current date
-- `$VALUE$` - Numeric value
+| Variable | Description |
+|----------|-------------|
+| `$COUNTRY$` / `$COUNTRYNAME$` | Country name |
+| `$COUNTRY_ADJ$` | Country adjective |
+| `$FROMCOUNTRY$` | FROM country name |
+| `$TARGET$` | Target country |
+| `$CAPITAL$` | Capital city |
+| `$DATE$` | Current date |
+| `$VALUE$` / `$AMOUNT$` | Numeric value |
+| `$PROVINCE$` / `$PROVINCENAME$` | Province name |
+
+> **For 300+ dynamic variables**, see the [Dynamic Keys Reference](docs/localisation_wiki.md#dynamic-keys-reference) in the official wiki.
 
 ---
 
@@ -900,21 +927,24 @@ Uses province 2127-2128 as "ghost country" staging area.
 
 A comprehensive Python script to detect missing localizations for event modifiers, triggered modifiers, events, and decisions.
 
-**Location:** `D:\Steam\steamapps\common\Victoria 2\mod\check_missing_localizations.py`
+**Location:** `D:\Steam\steamapps\common\Victoria 2\mod\app\check_missing_localizations.py`
 
 **Usage:**
 ```bash
 # Full scan of all localizations
-python check_missing_localizations.py
+python app/check_missing_localizations.py
 
 # Verbose output with detailed listings
-python check_missing_localizations.py --verbose
+python app/check_missing_localizations.py --verbose
 
-# Scan for specific modifier pattern
-python check_missing_localizations.py --scan-money-hoarder
+# Only scan modifiers (faster)
+python app/check_missing_localizations.py --scan-modifiers
 
-# Generate fix file with proposed entries
-python check_missing_localizations.py --fix --output proposed_fixes.csv
+# Scan for specific money_hoarder pattern
+python app/check_missing_localizations.py --scan-money-hoarder
+
+# Generate fix files with proposed entries
+python app/check_missing_localizations.py --fix --output proposed_fixes
 ```
 
 **Features:**
@@ -1019,6 +1049,12 @@ C:\Program Files\ImageMagick-7.1.2-Q16-HDRI\magick.exe
 ---
 
 ## External Resources
+
+### Local Documentation
+
+- **[Localisation Guide](docs/localisation_wiki.md)** - Complete Victoria 2 localisation reference (300+ dynamic variables, color codes, special characters, troubleshooting)
+
+### Online References
 
 - **[Paradox Wiki Modding Portal](https://vic2.paradoxwikis.com/Modding)** - Official modding documentation
 - **[List of Conditions](https://vic2.paradoxwikis.com/List_of_conditions)** - Complete trigger reference

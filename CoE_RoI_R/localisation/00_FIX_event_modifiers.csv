@@ -1,0 +1,174 @@
+colonial_recruitment;Colonial Recruitment;;;;;;;;;;;;;x
+colonial_recruitment_desc;Agents of the Crown scour distant lands, promising adventure and fortune to those bold enough to settle in the colonies.;;;;;;;;;;;;;x
+officer_training_1_mod;Basic Officer Training;;;;;;;;;;;;;x
+officer_training_1_mod_desc;Young officers receive instruction in the fundamentals of military command.;;;;;;;;;;;;;x
+officer_training_2_mod;Intermediate Officer Training;;;;;;;;;;;;;x
+officer_training_2_mod_desc;Officers undertake more advanced studies in tactics and leadership.;;;;;;;;;;;;;x
+officer_training_3_mod;Advanced Officer Training;;;;;;;;;;;;;x
+officer_training_3_mod_desc;Seasoned officers refine their skills under the tutelage of military masters.;;;;;;;;;;;;;x
+officer_training_4_mod;Expert Officer Training;;;;;;;;;;;;;x
+officer_training_4_mod_desc;A select corps of officers receives instruction rivaling that of any nation.;;;;;;;;;;;;;x
+officer_training_5_mod;Elite Officer Training;;;;;;;;;;;;;x
+officer_training_5_mod_desc;Our officer academy has become legendary, producing commanders of unparalleled skill.;;;;;;;;;;;;;x
+officer_training_6_mod;Superior Officer Training;;;;;;;;;;;;;x
+officer_training_6_mod_desc;Foreign powers send observers to study our methods of officer education.;;;;;;;;;;;;;x
+officer_training_7_mod;Pinnacle Officer Training;;;;;;;;;;;;;x
+officer_training_7_mod_desc;Our officer corps represents the absolute pinnacle of military professionalism.;;;;;;;;;;;;;x
+man_of_the_people;Man of the People;;;;;;;;;;;;;x
+man_of_the_people_desc;This leader rose from humble origins and understands the concerns of common folk. The masses adore him.;;;;;;;;;;;;;x
+landed_gentleman;Landed Gentleman;;;;;;;;;;;;;x
+landed_gentleman_desc;A member of the landed gentry, this leader brings the traditions and connections of old money.;;;;;;;;;;;;;x
+sprawling_forest;Sprawling Forest;;;;;;;;;;;;;x
+sprawling_forest_desc;Ancient woodlands stretch as far as the eye can see, providing timber and shelter to wild creatures.;;;;;;;;;;;;;x
+large_forest;Large Forest;;;;;;;;;;;;;x
+large_forest_desc;Substantial woodlands cover much of the region, supporting a thriving timber industry.;;;;;;;;;;;;;x
+dense_forest;Dense Forest;;;;;;;;;;;;;x
+dense_forest_desc;Thick forest carpets the land, its canopy so complete that sunlight barely reaches the ground below.;;;;;;;;;;;;;x
+normal_forest;Moderate Forest;;;;;;;;;;;;;x
+normal_forest_desc;Healthy woodlands provide a balance of timber resources and natural habitat.;;;;;;;;;;;;;x
+small_forest;Small Forest;;;;;;;;;;;;;x
+small_forest_desc;Scattered groves dot the landscape, remnants of once-greater forests.;;;;;;;;;;;;;x
+marginal_forest;Marginal Forest;;;;;;;;;;;;;x
+marginal_forest_desc;Only scattered trees remain where forests once stood, barely enough for local needs.;;;;;;;;;;;;;x
+scarce_forest;Scarce Forest;;;;;;;;;;;;;x
+scarce_forest_desc;The forests have been nearly exhausted, and timber must be imported from elsewhere.;;;;;;;;;;;;;x
+no_forest;Deforested Land;;;;;;;;;;;;;x
+no_forest_desc;The land has been stripped bare of trees, leaving only stumps and bare earth where forests once thrived.;;;;;;;;;;;;;x
+deforestation_modifier;Deforestation;;;;;;;;;;;;;x
+deforestation_modifier_desc;Reckless logging has stripped the land bare, causing erosion and destroying natural habitats.;;;;;;;;;;;;;x
+british_merchants_modifier;British Merchant Influence;;;;;;;;;;;;;x
+british_merchants_modifier_desc;British trading houses have established themselves here, bringing commerce and British ways.;;;;;;;;;;;;;x
+russian_merchants_modifier;Russian Merchant Influence;;;;;;;;;;;;;x
+russian_merchants_modifier_desc;Russian merchants have gained a foothold, spreading their influence through trade.;;;;;;;;;;;;;x
+good_flooding_modifier;Beneficial Floods;;;;;;;;;;;;;x
+good_flooding_modifier_desc;The annual floods deposit rich silt on the fields, blessing farmers with fertile soil.;;;;;;;;;;;;;x
+bad_flooding_modifier;Destructive Floods;;;;;;;;;;;;;x
+bad_flooding_modifier_desc;The rivers have burst their banks with terrible fury, destroying crops and dwellings alike.;;;;;;;;;;;;;x
+pig_headed_isolationist;Stubborn Isolationist;;;;;;;;;;;;;x
+pig_headed_isolationist_desc;This obstinate leader refuses to engage with the outside world, for better or worse.;;;;;;;;;;;;;x
+dour_economist;Dour Economist;;;;;;;;;;;;;x
+dour_economist_desc;This grim-faced administrator counts every penny and views any expenditure with deep suspicion.;;;;;;;;;;;;;x
+colonial_exploitation_tech_effect;Colonial Exploitation;;;;;;;;;;;;;x
+colonial_exploitation_tech_effect_desc;Advanced techniques allow more efficient extraction of wealth from colonial territories.;;;;;;;;;;;;;x
+baby_boom;Baby Boom;;;;;;;;;;;;;x
+baby_boom_desc;Prosperity and optimism have led to a surge in births. The nation's future looks secure.;;;;;;;;;;;;;x
+modern_democracy_modifier;Modern Democracy;;;;;;;;;;;;;x
+modern_democracy_modifier_desc;Democratic institutions have taken root, giving voice to the people in matters of governance.;;;;;;;;;;;;;x
+efficient_sociopath;Ruthless Administrator;;;;;;;;;;;;;x
+efficient_sociopath_desc;This leader achieves results through methods best left unexamined. Efficiency comes at a price.;;;;;;;;;;;;;x
+backroom_boy;Political Operator;;;;;;;;;;;;;x
+backroom_boy_desc;A master of backroom deals and political maneuvering, this figure pulls strings from the shadows.;;;;;;;;;;;;;x
+empire_del_inca;Legacy of the Inca;;;;;;;;;;;;;x
+empire_del_inca_desc;The ancient traditions of the Inca Empire still influence governance and culture in these lands.;;;;;;;;;;;;;x
+no_terrace_farming;No Terrace Farming;;;;;;;;;;;;;x
+no_terrace_farming_desc;The mountainous terrain lies uncultivated, lacking the terraced fields that could make it productive.;;;;;;;;;;;;;x
+terrace_farming_modifier;Terrace Farming;;;;;;;;;;;;;x
+terrace_farming_modifier_desc;Ingenious terraced fields climb the mountainsides, transforming steep slopes into productive farmland.;;;;;;;;;;;;;x
+expert_diplomat;Expert Diplomat;;;;;;;;;;;;;x
+expert_diplomat_desc;A master of negotiation and international affairs, this leader navigates the complexities of diplomacy with ease.;;;;;;;;;;;;;x
+marsh_land_reclaimed;Reclaimed Marshland;;;;;;;;;;;;;x
+marsh_land_reclaimed_desc;Through great effort, the marshy ground has been drained and converted to productive farmland.;;;;;;;;;;;;;x
+the_statue_of_liberty;The Statue of Liberty;;;;;;;;;;;;;x
+the_statue_of_liberty_desc;The great copper lady lifts her torch high, welcoming the tired and huddled masses to these shores.;;;;;;;;;;;;;x
+dervish_dhaanto_modifier;Dervish Movement;;;;;;;;;;;;;x
+dervish_dhaanto_modifier_desc;The Dervish movement stirs religious fervor and resistance against foreign influence.;;;;;;;;;;;;;x
+emergency_draft;Emergency Draft;;;;;;;;;;;;;x
+emergency_draft_desc;Desperate times call for desperate measures. Men are being conscripted en masse for the war effort.;;;;;;;;;;;;;x
+prince_of_terror;Prince of Terror;;;;;;;;;;;;;x
+prince_of_terror_desc;This ruler maintains order through fear. Opposition is crushed with ruthless efficiency.;;;;;;;;;;;;;x
+tribal_unrest_modifier;Tribal Unrest;;;;;;;;;;;;;x
+tribal_unrest_modifier_desc;The native tribes grow restless under foreign rule, and whispers of rebellion spread like wildfire.;;;;;;;;;;;;;x
+malaria_modifier;Malaria Epidemic;;;;;;;;;;;;;x
+malaria_modifier_desc;The deadly fever spreads through the swamps and lowlands, claiming lives with terrible regularity.;;;;;;;;;;;;;x
+transcribing_quipus;Transcribing the Quipus;;;;;;;;;;;;;x
+transcribing_quipus_desc;Scholars work to decode the knotted strings that record the wisdom of the ancient Inca.;;;;;;;;;;;;;x
+military_collapse;Military Collapse;;;;;;;;;;;;;x
+military_collapse_desc;Our armed forces have disintegrated. What remains is a demoralized rabble incapable of resistance.;;;;;;;;;;;;;x
+dissatisfied_workers;Dissatisfied Workers;;;;;;;;;;;;;x
+dissatisfied_workers_desc;The workers grumble about wages and conditions. Production suffers as motivation plummets.;;;;;;;;;;;;;x
+gauche_buffoon;Inept Leader;;;;;;;;;;;;;x
+gauche_buffoon_desc;This clownish figure stumbles from one embarrassment to another, making our nation a laughingstock.;;;;;;;;;;;;;x
+competent_placeholder;Competent Administrator;;;;;;;;;;;;;x
+competent_placeholder_desc;Unexceptional but reliable, this leader keeps the machinery of government running smoothly.;;;;;;;;;;;;;x
+loyal_askaris;Loyal Askaris;;;;;;;;;;;;;x
+loyal_askaris_desc;Native soldiers serve the colonial administration with dedication, keeping order in the territories.;;;;;;;;;;;;;x
+the_dawn_of_an_era_decision;Dawn of a New Era;;;;;;;;;;;;;x
+the_dawn_of_an_era_decision_desc;A new chapter in our nation's history is beginning. The future stretches before us, full of possibility.;;;;;;;;;;;;;x
+demanded_cores;Territorial Demands;;;;;;;;;;;;;x
+demanded_cores_desc;Our rightful territories remain in foreign hands, and our people cry out for their return.;;;;;;;;;;;;;x
+lord_admiral;Lord Admiral;;;;;;;;;;;;;x
+lord_admiral_desc;An old sea dog commands our navy, bringing decades of experience to our maritime affairs.;;;;;;;;;;;;;x
+visionary_thinker;Visionary Thinker;;;;;;;;;;;;;x
+visionary_thinker_desc;This brilliant mind sees possibilities others cannot imagine, leading our nation toward a bold future.;;;;;;;;;;;;;x
+worker_revolt;Worker Revolt;;;;;;;;;;;;;x
+worker_revolt_desc;The working class has risen in fury! Factories stand idle as angry mobs roam the streets.;;;;;;;;;;;;;x
+raving_loon;Unstable Leadership;;;;;;;;;;;;;x
+raving_loon_desc;Our leader's erratic behavior and bizarre pronouncements alarm allies and enemies alike.;;;;;;;;;;;;;x
+administrative_genius;Administrative Genius;;;;;;;;;;;;;x
+administrative_genius_desc;A mind of extraordinary organizational ability brings unprecedented efficiency to governance.;;;;;;;;;;;;;x
+native_encouragement_modifier;Native Encouragement;;;;;;;;;;;;;x
+native_encouragement_modifier_desc;Colonial policies seek to win native cooperation through incentives and fair treatment.;;;;;;;;;;;;;x
+native_oppression_modifier;Native Oppression;;;;;;;;;;;;;x
+native_oppression_modifier_desc;Brutal policies crush native resistance but breed deep resentment that may one day explode.;;;;;;;;;;;;;x
+imperious_autocrat;Imperious Autocrat;;;;;;;;;;;;;x
+imperious_autocrat_desc;This domineering ruler brooks no dissent, commanding absolute obedience from all subjects.;;;;;;;;;;;;;x
+ambitious_union_boss;Ambitious Union Boss;;;;;;;;;;;;;x
+ambitious_union_boss_desc;A labor leader of unusual ambition uses worker solidarity as a stepping stone to power.;;;;;;;;;;;;;x
+rev_birth_place;Birthplace of Revolution;;;;;;;;;;;;;x
+rev_birth_place_desc;This hallowed ground saw the first spark of revolution ignite. Its memory inspires radicals still.;;;;;;;;;;;;;x
+rev_birth_place2;Revolutionary Heartland;;;;;;;;;;;;;x
+rev_birth_place2_desc;The flames of revolution burn brightest here, in the very heart of the movement.;;;;;;;;;;;;;x
+ghost_country_haunting;Ghost of a Fallen Nation;;;;;;;;;;;;;x
+ghost_country_haunting_desc;The memory of a destroyed nation haunts this land, and some dream of its resurrection.;;;;;;;;;;;;;x
+feudal;Feudal Structure;;;;;;;;;;;;;x
+feudal_desc;Ancient bonds of fealty tie peasant to lord in a system unchanged for centuries.;;;;;;;;;;;;;x
+circassian_expulsion;Circassian Expulsion;;;;;;;;;;;;;x
+circassian_expulsion_desc;A proud people has been driven from their homeland, scattered across foreign lands.;;;;;;;;;;;;;x
+slavepopupdated;Slave Population Updated;;;;;;;;;;;;;x
+slavepopupdated_desc;The census of enslaved persons has been updated to reflect current conditions.;;;;;;;;;;;;;x
+great_reformer;Great Reformer;;;;;;;;;;;;;x
+great_reformer_desc;A visionary leader transforms society, sweeping away the old order to build something new.;;;;;;;;;;;;;x
+gm_timer;Administrative Timer;;;;;;;;;;;;;x
+gm_timer_desc;Government processes proceed according to established schedules.;;;;;;;;;;;;;x
+serfdom_modifier;Serfdom;;;;;;;;;;;;;x
+serfdom_modifier_desc;The peasants are bound to the land, working for their lords in conditions little better than slavery.;;;;;;;;;;;;;x
+colonial_mismanagement;Colonial Mismanagement;;;;;;;;;;;;;x
+colonial_mismanagement_desc;Corrupt and incompetent officials have brought colonial administration to the brink of collapse.;;;;;;;;;;;;;x
+successful_industrialist;Successful Industrialist;;;;;;;;;;;;;x
+successful_industrialist_desc;A captain of industry brings business acumen and connections to national leadership.;;;;;;;;;;;;;x
+israel_aliyah_modifier;Aliyah Movement;;;;;;;;;;;;;x
+israel_aliyah_modifier_desc;Jews from across the world make their way to the ancestral homeland, building a new society.;;;;;;;;;;;;;x
+germania_werft;Germania Werft;;;;;;;;;;;;;x
+germania_werft_desc;The great shipyards thunder with activity, turning out warships to project naval power abroad.;;;;;;;;;;;;;x
+atlantic_slave_trade;Atlantic Slave Trade;;;;;;;;;;;;;x
+atlantic_slave_trade_desc;The terrible commerce in human souls continues, ships bearing their suffering cargo across the ocean.;;;;;;;;;;;;;x
+loosee;Administrative Laxity;;;;;;;;;;;;;x
+loosee_desc;Relaxed governance allows both freedom and disorder to flourish in equal measure.;;;;;;;;;;;;;x
+turkish_assimilation;Turkish Assimilation;;;;;;;;;;;;;x
+turkish_assimilation_desc;Ottoman policies promote Turkish language and culture among diverse populations.;;;;;;;;;;;;;x
+military_man;Military Background;;;;;;;;;;;;;x
+military_man_desc;A former soldier's discipline and command experience shape this leader's governing style.;;;;;;;;;;;;;x
+ivory_tower_intellectual;Ivory Tower Intellectual;;;;;;;;;;;;;x
+ivory_tower_intellectual_desc;This scholarly leader brings theoretical brilliance but sometimes lacks practical understanding.;;;;;;;;;;;;;x
+bhu_paradise;Himalayan Paradise;;;;;;;;;;;;;x
+bhu_paradise_desc;In the shadow of the great mountains, an isolated kingdom maintains its ancient ways.;;;;;;;;;;;;;x
+penal_colonies;Penal Colonies;;;;;;;;;;;;;x
+penal_colonies_desc;Distant lands serve as dumping grounds for criminals, who toil to build civilization from nothing.;;;;;;;;;;;;;x
+colonial_museum_of_natural_history;Colonial Museum of Natural History;;;;;;;;;;;;;x
+colonial_museum_of_natural_history_desc;Specimens from distant lands fill the galleries, showcasing the wonders of our colonial empire.;;;;;;;;;;;;;x
+luddite;Luddite Influence;;;;;;;;;;;;;x
+luddite_desc;Machine-breakers roam the countryside, smashing the devices they blame for their misery.;;;;;;;;;;;;;x
+lanfang_republic_modifier;Lanfang Republic;;;;;;;;;;;;;x
+lanfang_republic_modifier_desc;The Chinese kongsi governs these lands with an unusual blend of tradition and republicanism.;;;;;;;;;;;;;x
+economic_revitalization;Economic Revitalization;;;;;;;;;;;;;x
+economic_revitalization_desc;Investment and reform breathe new life into a stagnant economy.;;;;;;;;;;;;;x
+rgo_boycott_modifier;Resource Boycott;;;;;;;;;;;;;x
+rgo_boycott_modifier_desc;Foreign powers refuse to purchase our goods, strangling our economy in retaliation.;;;;;;;;;;;;;x
+great_statesman;Great Statesman;;;;;;;;;;;;;x
+great_statesman_desc;A leader of extraordinary vision and ability guides the nation through perilous times.;;;;;;;;;;;;;x
+emancipation_modifier;Emancipation;;;;;;;;;;;;;x
+emancipation_modifier_desc;The chains of bondage have been broken, and former slaves taste freedom at last.;;;;;;;;;;;;;x
+pachacuti_reforms;Pachacuti Reforms;;;;;;;;;;;;;x
+pachacuti_reforms_desc;Following the example of the great Inca reformer, the state reorganizes along ancient lines.;;;;;;;;;;;;;x
+ai_economic_flavour_cooldown;Economic Adjustment Period;;;;;;;;;;;;;x
+ai_economic_flavour_cooldown_desc;The economy stabilizes after recent changes.;;;;;;;;;;;;;x
