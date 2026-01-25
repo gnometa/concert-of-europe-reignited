@@ -1,0 +1,1 @@
+BADBOY_EFFECT,ENDGAME_DESC,OR_TRIG_SHORT,TECH_DAILY_LEADERSHIP_TOTAL_TOOLTIP,artillery_production_desc,colonial_exploitation,firepower_doctrine,land_reform,military_aviation

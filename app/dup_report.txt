@@ -1,0 +1,128 @@
+File Load Order (Highest to Lowest Priority):
+============================================================
+   1. VIP_events.csv
+   2. VIP_decisions.csv
+   3. text.csv
+   4. Taiping(move_later).csv
+   5. southamerica.csv
+   6. Scandinavian_Famine.csv
+   7. PDM_CE.csv
+   8. newtext.csv
+   9. newstext_3_01.csv
+  10. newspaper_text.csv
+  11. newCE.csv
+  12. new_political_parties.csv
+  13. LUX_localisation.csv
+  14. housedivided2_3.csv
+  15. housedivided2_2.csv
+  16. housedivided2_1.csv
+  17. housedivided.csv
+  18. GVG_events.csv
+  19. event_news_3_01.csv
+  20. event_news.csv
+  ... and 41 more files
+
+================================================================================
+CROSS-FILE DUPLICATES BY FILE (Lower Priority Files)
+================================================================================
+
+Format: KEY in [filename] overrides [lower_file]
+
+
+000_crownsteler_east_indies.csv: 1 duplicate keys to remove
+------------------------------------------------------------
+  Overridden by PDM_CE.csv: 1 keys
+    EVTDESC95253                             (line    23): Our mutual colonial ambitions in the Eas
+
+000_indies_map_countries.csv: 1 duplicate keys to remove
+------------------------------------------------------------
+  Overridden by darkness_3_01.csv: 1 keys
+    D31_ADJ                                  (line    25): Soppeng
+
+000_persia_map.csv: 2 duplicate keys to remove
+------------------------------------------------------------
+  Overridden by 00_PDM_map.csv: 1 keys
+    NET_1446                                 (line    33): Timor
+  Overridden by PDM_CE.csv: 1 keys
+    RUS_979                                  (line     9): Don
+
+00_FIX_event_modifiers.csv: 1 duplicate keys to remove
+------------------------------------------------------------
+  Overridden by 00_PDM_political.csv: 1 keys
+    pig_headed_isolationist_desc             (line    48): This obstinate leader refuses to engage 
+
+00_FIX_triggered_modifiers.csv: 2 duplicate keys to remove
+------------------------------------------------------------
+  Overridden by 00_PDM_GAGA.csv: 1 keys
+    social_chaos                             (line    86): Social Chaos
+  Overridden by PDM_CE.csv: 1 keys
+    small_nation                             (line    74): Small Nation
+
+00_PDM_GAGA.csv: 4 duplicate keys to remove
+------------------------------------------------------------
+  Overridden by 00_PDM_political.csv: 1 keys
+    naval_architecture_l                     (line   655): Naval Design
+  Overridden by 00_PDM_tech.csv: 1 keys
+    motorised_infantry_doctrine              (line   800): Motorised Infantry Doctrine (*)
+  Overridden by housedivided.csv: 1 keys
+    admin_reform_l                           (line   625): Administration
+  Overridden by newtext.csv: 1 keys
+    LIFERATING_EFFECT                        (line  1332): * $DIRECTION$ $VALUE$ liferating.\n
+
+00_PDM_countries.csv: 4 duplicate keys to remove
+------------------------------------------------------------
+  Overridden by darkness_3_01.csv: 1 keys
+    D07                                      (line    14): The Free State of $REGION$
+  Overridden by housedivided2_1.csv: 1 keys
+    TPG_proletarian_dictatorship             (line  1634): Communist Taiping
+  Overridden by housedivided2_3.csv: 1 keys
+    BYE_liberal                              (line   262): Westerniser
+  Overridden by newtext.csv: 1 keys
+    MCK_ADJ                                  (line   967): Manchu
+
+00_PDM_events.csv: 1 duplicate keys to remove
+------------------------------------------------------------
+  Overridden by newtext.csv: 1 keys
+    restore_mexican_empire_desc              (line  2267): With the backing of the Second French Em
+
+00_PDM_map.csv: 2 duplicate keys to remove
+------------------------------------------------------------
+  Overridden by darkness.csv: 1 keys
+    LUA_1356                                 (line    94): Laos
+  Overridden by newtext.csv: 1 keys
+    CHI_1601                                 (line   152): Yunnan
+
+00_PDM_tech.csv: 1 duplicate keys to remove
+------------------------------------------------------------
+  Overridden by darkness.csv: 1 keys
+    rotherham_plough_desc                    (line   405): The Rotherham or Yorkshire Plough invent
+
+housedivided.csv: 1 duplicate keys to remove
+------------------------------------------------------------
+  Overridden by newtext.csv: 1 keys
+    MCK                                      (line   830): Manchuria
+
+new_political_parties.csv: 1 duplicate keys to remove
+------------------------------------------------------------
+  Overridden by PDM_CE.csv: 1 keys
+    SPA_social_liberal                       (line    26): Partido Liberal
+
+================================================================================
+TOTAL CROSS-FILE DUPLICATES: 21
+================================================================================
+
+================================================================================
+GENERATING REMOVAL LISTS FOR EACH FILE
+================================================================================
+  Created: app\remove_000_crownsteler_east_indies_keys.txt (1 keys)
+  Created: app\remove_000_indies_map_countries_keys.txt (1 keys)
+  Created: app\remove_000_persia_map_keys.txt (2 keys)
+  Created: app\remove_00_FIX_event_modifiers_keys.txt (1 keys)
+  Created: app\remove_00_FIX_triggered_modifiers_keys.txt (2 keys)
+  Created: app\remove_00_PDM_GAGA_keys.txt (4 keys)
+  Created: app\remove_00_PDM_countries_keys.txt (4 keys)
+  Created: app\remove_00_PDM_events_keys.txt (1 keys)
+  Created: app\remove_00_PDM_map_keys.txt (2 keys)
+  Created: app\remove_00_PDM_tech_keys.txt (1 keys)
+  Created: app\remove_housedivided_keys.txt (1 keys)
+  Created: app\remove_new_political_parties_keys.txt (1 keys)
